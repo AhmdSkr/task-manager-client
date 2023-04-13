@@ -1,0 +1,23 @@
+@startuml
+'https://plantuml.com/class-diagram
+
+class Task {
+    + {static} DEFAULT_NAME : String
+    + {static} DEFAULT_DESCRIPTION : String
+    - taskId : Integer
+    - name : String
+    - description : String
+    - createdAt : Instant
+    + Task()
+    + Task(taskId : Integer, name : String, name : String, description : String, createdAt : Instant)
+    + getTaskId() : Integer
+    + getName() : String
+    + getDescription() : String
+    + getCreationTime() : Instant
+    + setTaskId(taskId : Integer)
+    + setName(name : String)
+    + setDescription(description : String)
+    + equals(Object) : boolean
+    + hashCode() : int
+}
+@enduml

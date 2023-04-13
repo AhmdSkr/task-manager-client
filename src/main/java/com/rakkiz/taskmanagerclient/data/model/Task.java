@@ -3,6 +3,10 @@ import java.time.Instant;
 import java.util.Objects;
 
 public class Task {
+
+    public static final String DEFAULT_NAME = "Untitled";
+    public static final String DEFAULT_DESCRIPTION = "";
+
     private Integer taskId;
     private String name;
     private String description;
@@ -19,8 +23,8 @@ public class Task {
      */
     public Task() {
         this.taskId = null;
-        this.name = "Untitled";
-        this.description = "";
+        this.name = DEFAULT_NAME;
+        this.description = DEFAULT_DESCRIPTION;
         this.createdAt = Instant.now();
     }
 
