@@ -20,4 +20,12 @@ class Task {
     + equals(Object) : boolean
     + hashCode() : int
 }
+
+interface TaskRepository {
+    + create(Task)
+    + getByTaskId(Integer) : Task
+    + getByCreationInterval(start : Instant, durationAfter Integer) : List<Task>
+    + update(Task)
+    + delete(taskId : Integer)
+}
 @enduml
