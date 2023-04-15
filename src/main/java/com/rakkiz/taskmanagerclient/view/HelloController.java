@@ -1,4 +1,4 @@
-package com.rakkiz.taskmanagerclient;
+package com.rakkiz.taskmanagerclient.view;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
