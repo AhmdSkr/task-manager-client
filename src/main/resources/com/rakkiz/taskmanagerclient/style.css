@@ -3,7 +3,18 @@
     src: url("fonts/Merriweather-Light.ttf");
 }
 
-.navItem, .navItem:hover{
+@font-face {
+    font-family: 'firaSemiBold';
+    src: url("fonts/FiraSansCondensed-SemiBold.ttf");
+}
+
+.firaSemiBold {
+    -fx-font-family: 'firaSemiBold';
+    -fx-font-size: 70px;
+    -fx-font-weight: bold;
+}
+
+.navItem, .navItem:hover {
     -fx-font-family: 'Merriweather Light';
     -fx-font-size: 24px;
     -fx-border-color: transparent;
@@ -14,3 +25,8 @@
     -fx-text-fill: #E63946;
 }
 
+#sideBar {
+    -fx-border-width: 0 1 0 0;
+    -fx-border-color: #457B9D;
+    -fx-background-insets: 0 0 0 -2;
+}

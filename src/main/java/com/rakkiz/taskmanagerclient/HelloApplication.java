@@ -11,7 +11,7 @@ import java.io.IOException;
 public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/nav-side-bar.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/task-sack.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Rakkiz");
         Image icon = new Image(getClass().getResourceAsStream("images/icon.png"));
