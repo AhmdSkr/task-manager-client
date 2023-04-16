@@ -1,0 +1,25 @@
+@import url("style.css")
+
+.taskTitle{
+    -fx-text-fill: #E63946;
+    -fx-font-family: 'firaSemiBold';
+    -fx-font-weight: 500;
+    -fx-font-size: 24px;
+    -fx-line-spacing: 5px;
+}
+
+.taskDesc{
+    -fx-font-family: 'Merriweather light';
+    -fx-font-size: 16px;
+    -fx-font-weight: 400;
+    -fx-font-style: italic;
+}
+
+.btnDel{
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+    -fx-text-fill: black;
+    -fx-font-size: 20px;
+    -fx-padding: 0px;
+    -fx-graphic: url("./images/close.png");
+}

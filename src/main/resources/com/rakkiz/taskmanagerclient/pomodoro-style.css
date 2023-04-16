@@ -1,0 +1,19 @@
+@import url("style.css")
+
+.timerTime{
+
+    -fx-background-radius: 50%;
+    -fx-pref-width: 591px;
+    -fx-pref-height: 591px;
+}
+
+.startBtn{
+    -fx-background-color: #f6f6f6;
+    -fx-background-radius: 50px;
+    -fx-font-size: 32px;
+    -fx-font-weight: 400;
+}
+
+.spinner{
+    -fx-background-color: #F08890;
+}
