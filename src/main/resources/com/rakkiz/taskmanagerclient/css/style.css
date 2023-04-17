@@ -1,12 +1,4 @@
-@font-face {
-    font-family: 'Merriweather Light';
-    src: url("fonts/Merriweather-Light.ttf");
-}
-
-@font-face {
-    font-family: 'firaSemiBold';
-    src: url("fonts/FiraSansCondensed-SemiBold.ttf");
-}
+@import url("fonts.css");
 
 .firaSemiBold {
     -fx-font-family: 'firaSemiBold';

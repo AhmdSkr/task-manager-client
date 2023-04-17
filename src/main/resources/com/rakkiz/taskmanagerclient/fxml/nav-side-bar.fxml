@@ -11,7 +11,7 @@
             fx:controller="com.rakkiz.taskmanagerclient.view.NavBarController">
     <children>
         <AnchorPane id="sideBar" layoutX="7.0" layoutY="8.0" prefHeight="1117.0" prefWidth="289.0"
-                    style="-fx-background-color: #F3F3F3;" stylesheets="@../style.css" AnchorPane.leftAnchor="0.0"
+                    style="-fx-background-color: #F3F3F3;" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0"
                     AnchorPane.topAnchor="0.0">
             <children>
                 <ImageView fitHeight="50.0" fitWidth="207.0" layoutX="18.0" layoutY="69.0" pickOnBounds="true"
@@ -24,7 +24,7 @@
                           AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="176.0">
                     <children>
                         <HBox alignment="CENTER" cacheShape="false" centerShape="false" layoutX="43.0"
-                              scaleShape="false" spacing="10.0" styleClass="navHbox" stylesheets="@../style.css">
+                              scaleShape="false" spacing="10.0" styleClass="navHbox" stylesheets="@../css/style.css">
                             <children>
                                 <ImageView fitHeight="29.29" fitWidth="29.29" mouseTransparent="true"
                                            pickOnBounds="true" preserveRatio="true">
@@ -35,7 +35,7 @@
                                         <Rectangle2D minX="30.0"/>
                                     </viewport>
                                 </ImageView>
-                                <Hyperlink alignment="CENTER" styleClass="navItem" stylesheets="@../style.css"
+                                <Hyperlink alignment="CENTER" styleClass="navItem" stylesheets="@../css/style.css"
                                            text="Task Sack" textFill="#201f1a" wrapText="true">
                                     <font>
                                         <Font name="AdobeDevanagari-Regular" size="24.0"/>
@@ -44,14 +44,14 @@
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" layoutX="43.0" prefHeight="45.0" spacing="10.0" styleClass="navHBox"
-                              stylesheets="@../style.css">
+                              stylesheets="@../css/style.css">
                             <children>
                                 <ImageView fitHeight="29.29" fitWidth="29.29" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../images/pomodoro.png"/>
                                     </image>
                                 </ImageView>
-                                <Hyperlink alignment="CENTER" styleClass="navItem" stylesheets="@../style.css"
+                                <Hyperlink alignment="CENTER" styleClass="navItem" stylesheets="@../css/style.css"
                                            text="Pomodoro" textFill="#201f1a" wrapText="true">
                                     <font>
                                         <Font name="Algerian" size="24.0"/>

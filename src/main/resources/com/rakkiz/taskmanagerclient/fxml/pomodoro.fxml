@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="1117.0" prefWidth="1728.0" stylesheets="@../pomodoro-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroController">
+<AnchorPane prefHeight="1117.0" prefWidth="1728.0" stylesheets="@../css/pomodoro-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroController">
    <children>
       <fx:include source="nav-side-bar.fxml" />
       <VBox layoutX="404.0" layoutY="177.0" prefHeight="400.0" prefWidth="274.0" AnchorPane.bottomAnchor="540.5999999999999" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="177.0">

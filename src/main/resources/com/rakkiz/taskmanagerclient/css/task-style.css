@@ -1,4 +1,5 @@
-@import url("style.css")
+@import url("style.css");
+@import url("fonts.css");
 
 .taskTitle{
     -fx-text-fill: #E63946;
@@ -21,5 +22,9 @@
     -fx-text-fill: black;
     -fx-font-size: 20px;
     -fx-padding: 0px;
-    -fx-graphic: url("./images/close.png");
+    -fx-graphic: url("../images/close.png");
+}
+
+.task {
+    -fx-effect: dropshadow(three-pass-box, rgba(69,123,157,0.26), 10, 0, 3, 1);
 }
