@@ -3,17 +3,25 @@
 .timerTime{
 
     -fx-background-radius: 50%;
-    -fx-pref-width: 591px;
-    -fx-pref-height: 591px;
 }
 
 .startBtn{
     -fx-background-color: #f6f6f6;
     -fx-background-radius: 50px;
-    -fx-font-size: 32px;
+    -fx-font-size: 24px;
     -fx-font-weight: 400;
 }
 
 .spinner{
-    -fx-background-color: #F08890;
+    -fx-background-color: red;
+    -fx-border-width: 0 0 1 0 ;
+    -fx-background-radius: 10px;
+    -fx-padding: 5px;
+    -fx-font-size: 18px;
+}
+
+.nbInput{
+    -fx-background-color: transparent;
+    -fx-border-width: 0 0 1 0 ;
+    -fx-border-color: grey;
 }

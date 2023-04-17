@@ -8,11 +8,11 @@
 <AnchorPane prefHeight="1117.0" prefWidth="1728.0" stylesheets="@../css/pomodoro-style.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroController">
    <children>
       <fx:include source="nav-side-bar.fxml" />
-      <VBox layoutX="404.0" layoutY="177.0" prefHeight="400.0" prefWidth="274.0" AnchorPane.bottomAnchor="540.5999999999999" AnchorPane.leftAnchor="365.0" AnchorPane.topAnchor="177.0">
+      <VBox alignment="CENTER" layoutX="379.0" layoutY="300.0" prefHeight="464.0" prefWidth="400.0" AnchorPane.bottomAnchor="418.0" AnchorPane.leftAnchor="379.0" AnchorPane.topAnchor="300.0">
          <children>
-            <VBox alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" prefHeight="591.0" prefWidth="591.0" style="-fx-background-color: linear-gradient(to top, rgba(199, 215, 226, 0.5), rgba(248, 196, 200, 0.5));" styleClass="timerTime">
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="350.0" style="-fx-background-color: linear-gradient(to top, rgba(199, 215, 226, 0.5), rgba(248, 196, 200, 0.5));" styleClass="timerTime">
                <children>
-                  <Label style="-fx-font-weight: 500; -fx-font-size: 128px; -fx-font-style: normal;" styleClass="firaSemiBold" text="25:00" textAlignment="JUSTIFY" textFill="#f08890">
+                  <Label style="-fx-font-weight: 500; -fx-font-size: 96px; -fx-font-style: normal;" styleClass="firaSemiBold" text="25:00" textAlignment="JUSTIFY" textFill="#f08890">
                      <font>
                         <Font name="Monaco" size="96.0" />
                      </font>
@@ -25,39 +25,72 @@
             </VBox>
             <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0">
                <children>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="80.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <HBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #7fa9c8; -fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Break" />
-                              <Spinner prefHeight="26.0" prefWidth="81.0" style="-fx-border-radius: 50%;" />
+                              <Label prefHeight="200.0" prefWidth="100.0" text="Break:" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <TextField alignment="CENTER" prefHeight="26.0" prefWidth="50.0" styleClass="nbInput" />
                            </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #7fa9c8; -fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Rest" />
-                              <Spinner prefHeight="26.0" prefWidth="81.0" style="-fx-background-color: red;" />
+                              <Label alignment="BOTTOM_LEFT" prefHeight="200.0" prefWidth="100.0" text="Rest:" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <TextField prefHeight="26.0" prefWidth="50.0" styleClass="nbInput" />
                            </children>
-                        </VBox>
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </HBox>
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                  <HBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0" spacing="80.0">
                      <children>
-                        <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                        <HBox alignment="TOP_CENTER" prefHeight="50.0" prefWidth="150.0" style="-fx-background-color: #f08890; -fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Number" />
-                              <Spinner prefHeight="26.0" prefWidth="81.0" />
+                              <Label prefHeight="200.0" prefWidth="94.0" text="Number:" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <TextField prefHeight="26.0" prefWidth="50.0" styleClass="nbInput" />
                            </children>
-                        </VBox>
-                        <VBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="100.0">
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="TOP_CENTER" layoutX="10.0" layoutY="10.0" prefHeight="200.0" prefWidth="150.0" style="-fx-background-color: #f08890; -fx-background-radius: 30px;" HBox.hgrow="ALWAYS">
                            <children>
-                              <Label text="Time" />
-                              <Spinner prefHeight="26.0" prefWidth="81.0" />
+                              <Label prefHeight="200.0" prefWidth="100.0" text="Time:" textFill="WHITE">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font></Label>
+                              <TextField prefHeight="26.0" prefWidth="50.0" styleClass="nbInput" />
                            </children>
-                        </VBox>
+                           <padding>
+                              <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+                           </padding>
+                        </HBox>
                      </children>
+                     <VBox.margin>
+                        <Insets top="20.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </VBox>
          </children>
       </VBox>
