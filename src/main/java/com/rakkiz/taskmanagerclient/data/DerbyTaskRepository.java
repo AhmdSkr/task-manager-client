@@ -25,7 +25,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
     private final PreparedStatement deleteStatement;
     private final PreparedStatement updateStatement;
 
-    private static final String insertFormat = "INSERT INTO %s VALUES (?,?)";
+    private static final String insertFormat = "INSERT INTO %s (%s,%s,%s) VALUES (?,?,?)";
     private static final String readFormat = "SELECT * FROM %s WHERE %s";
     private static final String deleteFormat = "DELETE FROM %s WHERE %s";
     private static final String updateFormat = "UPDATE %s SET %s WHERE %s";
@@ -37,7 +37,14 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         this.connection = new DerbyDatabaseConnector().getConnection();
         new SchemaManager(connection).establishSchema();
         String tableName = SchemaManager.TASK_TABLE;
-        this.insertStatement = this.connection.prepareStatement(String.format(insertFormat,tableName));
+        this.insertStatement = this.connection.prepareStatement(
+                String.format(
+                        insertFormat,
+                        tableName,
+                        SchemaManager.TASK_NAME,
+                        SchemaManager.TASK_DESC,
+                        SchemaManager.TASK_CREATED_AT
+                ), Statement.RETURN_GENERATED_KEYS);
         this.readAllStatement = this.connection.prepareStatement("SELECT * FROM " + tableName);
         this.readByIdStatement = this.connection.prepareStatement(
                 String.format(
@@ -69,10 +76,15 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                 ));
     }
 
-    public void create(Task task) throws SQLException{
-        this.insertStatement.setString(1,task.getName());
-        this.insertStatement.setString(2,task.getDescription());
+    public void create(Task task) throws SQLException {
+        this.insertStatement.setString(1, task.getName());
+        this.insertStatement.setString(2, task.getDescription());
+        this.insertStatement.setTimestamp(3, Timestamp.from(task.getCreationTime()));
         this.insertStatement.executeUpdate();
+        ResultSet rs = this.insertStatement.getGeneratedKeys();
+        if (rs.next()) {
+            task.setTaskId(rs.getInt(1));
+        }
     }
 
     public List<Task> getAllTasks() throws SQLException{
@@ -125,20 +137,21 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         if(task.getTaskId() == null) {
             throw new NullPointerException(NULL_ID_EXCEPTION_MESSAGE);
         }
-        this.updateStatement.setString(1,task.getName());
-        this.updateStatement.setString(2,task.getDescription());
-        this.updateStatement.setInt(3,task.getTaskId());
-        if(updateStatement.executeUpdate() == 0){
+        this.updateStatement.setString(1, task.getName());
+        this.updateStatement.setString(2, task.getDescription());
+        this.updateStatement.setInt(3, task.getTaskId());
+        if (updateStatement.executeUpdate() == 0) {
             throw new SQLException(UPDATE_FAILURE_EXCEPTION_MESSAGE);
         }
     }
 
-    public void delete(Integer taskId) throws SQLException {
-        if(taskId == null) {
+    public void delete(Task task) throws SQLException {
+        if (task.getTaskId() == null) {
             throw new IllegalArgumentException(NULL_ID_EXCEPTION_MESSAGE);
         }
-        this.deleteStatement.setInt(1,taskId);
+        this.deleteStatement.setInt(1, task.getTaskId());
         this.deleteStatement.executeUpdate();
+        task.setTaskId(null);
     }
 
     @Override
