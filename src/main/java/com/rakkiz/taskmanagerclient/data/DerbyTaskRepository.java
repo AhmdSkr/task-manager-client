@@ -2,6 +2,8 @@ package com.rakkiz.taskmanagerclient.data;
 
 
 import com.rakkiz.taskmanagerclient.data.model.Task;
+import com.rakkiz.taskmanagerclient.data.util.DerbyDatabaseConnector;
+import com.rakkiz.taskmanagerclient.data.util.SchemaManager;
 
 import java.sql.*;
 import java.time.Instant;
@@ -28,15 +30,43 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
     private static final String deleteFormat = "DELETE FROM %s WHERE %s";
     private static final String updateFormat = "UPDATE %s SET %s WHERE %s";
 
-    public DerbyTaskRepository(Connection connection) throws SQLException {
-        this.connection = connection;
-        String tableName = "task";
+    /**
+     * @throws SQLException if access is not granted to database or if connection is not valid
+     */
+    public DerbyTaskRepository() throws SQLException {
+        this.connection = new DerbyDatabaseConnector().getConnection();
+        new SchemaManager(connection).establishSchema();
+        String tableName = SchemaManager.TASK_TABLE;
         this.insertStatement = this.connection.prepareStatement(String.format(insertFormat,tableName));
-        this.readAllStatement = this.connection.prepareStatement("SELECT * FROM "+tableName);
-        this.readByIdStatement = this.connection.prepareStatement(String.format(readFormat,tableName,"taskId = ?"));
-        this.readByCreationIntervalStatement = this.connection.prepareStatement(String.format(readFormat,tableName,"createdat BETWEEN ? AND ?"));
-        this.deleteStatement = this.connection.prepareStatement(String.format(deleteFormat,tableName,"taskId = ?"));
-        this.updateStatement = this.connection.prepareStatement(String.format(updateFormat,tableName,"name = ?, description = ?","taskId = ?"));
+        this.readAllStatement = this.connection.prepareStatement("SELECT * FROM " + tableName);
+        this.readByIdStatement = this.connection.prepareStatement(
+                String.format(
+                        readFormat,
+                        tableName,
+                        SchemaManager.TASK_ID + " = ?"
+                ));
+
+        this.readByCreationIntervalStatement = this.connection.prepareStatement(
+                String.format(
+                        readFormat,
+                        tableName,
+                        SchemaManager.TASK_CREATED_AT + " BETWEEN ? AND ?"
+                ));
+
+        this.deleteStatement = this.connection.prepareStatement(
+                String.format(
+                        deleteFormat,
+                        tableName,
+                        SchemaManager.TASK_ID + " = ?"
+                ));
+
+        this.updateStatement = this.connection.prepareStatement(
+                String.format(
+                        updateFormat,
+                        tableName,
+                        SchemaManager.TASK_NAME + " = ?, " + SchemaManager.TASK_DESC + " = ?",
+                        SchemaManager.TASK_ID + " = ?"
+                ));
     }
 
     public void create(Task task) throws SQLException{
@@ -50,10 +80,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         ResultSet rs = this.readAllStatement.executeQuery();
         while(rs.next()) {
             tasks.add( new Task(
-                    rs.getInt("taskId"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getTimestamp("createdat").toInstant()
+                    rs.getInt(SchemaManager.TASK_ID),
+                    rs.getString(SchemaManager.TASK_NAME),
+                    rs.getString(SchemaManager.TASK_DESC),
+                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
             ));
         }
         return tasks;
@@ -64,10 +94,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         ResultSet rs = readByIdStatement.executeQuery();
         if(rs.next()){
             return new Task(
-                    rs.getInt("taskId"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getTimestamp("createdat").toInstant()
+                    rs.getInt(SchemaManager.TASK_ID),
+                    rs.getString(SchemaManager.TASK_NAME),
+                    rs.getString(SchemaManager.TASK_DESC),
+                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
             );
         }
         return null;
@@ -82,10 +112,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         ResultSet rs = readByCreationIntervalStatement.executeQuery();
         while(rs.next()){
             tasks.add( new Task(
-                    rs.getInt("taskId"),
-                    rs.getString("name"),
-                    rs.getString("description"),
-                    rs.getTimestamp("createdat").toInstant()
+                    rs.getInt(SchemaManager.TASK_ID),
+                    rs.getString(SchemaManager.TASK_NAME),
+                    rs.getString(SchemaManager.TASK_DESC),
+                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
             ));
         }
         return tasks;
