@@ -81,36 +81,39 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         this.insertStatement.setString(2, task.getDescription());
         this.insertStatement.setTimestamp(3, Timestamp.from(task.getCreationTime()));
         this.insertStatement.executeUpdate();
-        ResultSet rs = this.insertStatement.getGeneratedKeys();
-        if (rs.next()) {
-            task.setTaskId(rs.getInt(1));
+        try (ResultSet rs = this.insertStatement.getGeneratedKeys()) {
+            if (rs.next()) {
+                task.setTaskId(rs.getInt(1));
+            }
         }
     }
 
-    public List<Task> getAllTasks() throws SQLException{
+    public List<Task> getAllTasks() throws SQLException {
         List<Task> tasks = new ArrayList<>();
-        ResultSet rs = this.readAllStatement.executeQuery();
-        while(rs.next()) {
-            tasks.add( new Task(
-                    rs.getInt(SchemaManager.TASK_ID),
-                    rs.getString(SchemaManager.TASK_NAME),
-                    rs.getString(SchemaManager.TASK_DESC),
-                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
-            ));
+        try (ResultSet rs = this.readAllStatement.executeQuery()) {
+            while (rs.next()) {
+                tasks.add(new Task(
+                        rs.getInt(SchemaManager.TASK_ID),
+                        rs.getString(SchemaManager.TASK_NAME),
+                        rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
+                ));
+            }
         }
         return tasks;
     }
 
     public Task getByTaskId(Integer taskId) throws SQLException {
-        this.readByIdStatement.setInt(1,taskId);
-        ResultSet rs = readByIdStatement.executeQuery();
-        if(rs.next()){
-            return new Task(
-                    rs.getInt(SchemaManager.TASK_ID),
-                    rs.getString(SchemaManager.TASK_NAME),
-                    rs.getString(SchemaManager.TASK_DESC),
-                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
-            );
+        this.readByIdStatement.setInt(1, taskId);
+        try (ResultSet rs = readByIdStatement.executeQuery()) {
+            if (rs.next()) {
+                return new Task(
+                        rs.getInt(SchemaManager.TASK_ID),
+                        rs.getString(SchemaManager.TASK_NAME),
+                        rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
+                );
+            }
         }
         return null;
     }
@@ -119,17 +122,19 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         List<Task> tasks = new ArrayList<>();
         Timestamp from = Timestamp.from(start);
         Timestamp to = Timestamp.from(start.plusSeconds(durationAfter));
-        readByCreationIntervalStatement.setTimestamp(1,from);
-        readByCreationIntervalStatement.setTimestamp(2,to);
-        ResultSet rs = readByCreationIntervalStatement.executeQuery();
-        while(rs.next()){
-            tasks.add( new Task(
-                    rs.getInt(SchemaManager.TASK_ID),
-                    rs.getString(SchemaManager.TASK_NAME),
-                    rs.getString(SchemaManager.TASK_DESC),
-                    rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
-            ));
+        readByCreationIntervalStatement.setTimestamp(1, from);
+        readByCreationIntervalStatement.setTimestamp(2, to);
+        try (ResultSet rs = readByCreationIntervalStatement.executeQuery()) {
+            while (rs.next()) {
+                tasks.add(new Task(
+                        rs.getInt(SchemaManager.TASK_ID),
+                        rs.getString(SchemaManager.TASK_NAME),
+                        rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant()
+                ));
+            }
         }
+
         return tasks;
     }
 
