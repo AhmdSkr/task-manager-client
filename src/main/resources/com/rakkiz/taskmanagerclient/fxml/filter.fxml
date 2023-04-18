@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" spacing="7.0" styleClass="container" stylesheets="@../css/filter.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/calendar.png" />
+         </image></ImageView>
+      <Label stylesheets="@../css/filter.css" text="Due" />
+      <VBox alignment="CENTER_RIGHT">
+         <children>
+            <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/arrow.png" />
+               </image>
+            </ImageView>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets left="5.0" right="5.0" />
+   </padding>
+</HBox>

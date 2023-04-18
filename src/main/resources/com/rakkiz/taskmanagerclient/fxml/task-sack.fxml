@@ -1,30 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskSackController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskSackController">
     <fx:include source="nav-side-bar.fxml" />
-    <HBox alignment="CENTER" layoutX="394.0" layoutY="91.0" prefHeight="100.0" prefWidth="200.0" spacing="11.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="106.0">
+    <fx:include prefWidth="200.0" source="filter.fxml" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="76.0" />
+    <HBox alignment="CENTER" layoutX="329.0" layoutY="76.0" prefHeight="100.0" prefWidth="200.0" spacing="11.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="76.0">
         <children>
-            <ImageView fitHeight="78.12" fitWidth="78.12" pickOnBounds="true" preserveRatio="true">
-            <image>
-               <Image url="@../images/tasks.png" />
-            </image></ImageView>
-            <Text fill="#201f1a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="firaSemiBold" text="Tasks">
+            <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                <image>
+                    <Image url="@../images/tasks.png" />
+                </image>
+            </ImageView>
+            <Text fill="#201f1a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Tasks">
                 <font>
                     <Font name="System Bold" size="38.0" />
                 </font>
             </Text>
         </children>
     </HBox>
-   <VBox layoutX="345.0" layoutY="347.0" prefHeight="460.0" prefWidth="614.0" spacing="41.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="445.0">
-       <fx:include source="task.fxml" />
-       <fx:include source="task.fxml" />
-   </VBox>
+   <HBox layoutX="329.0" layoutY="190.0" prefWidth="200.0" spacing="15.0" AnchorPane.topAnchor="190.0">
+      <children>
+          <fx:include source="filter.fxml" />
+          <fx:include source="filter.fxml" />
+          <fx:include source="filter.fxml" />
+      </children>
+   </HBox>
+    <HBox alignment="CENTER" layoutX="329.0" layoutY="248.0" prefHeight="100.0" prefWidth="200.0" spacing="59.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="248.0">
+        <VBox alignment="CENTER" layoutX="329.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="41.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="253.0">
+         <Label stylesheets="@../css/style.css" text="Unscheduled" VBox.vgrow="NEVER">
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+            <font>
+               <Font size="30.0" />
+            </font>
+         </Label>
+            <fx:include source="task.fxml" />
+            <fx:include source="task.fxml" />
+            <fx:include source="task.fxml" />
+         <HBox.margin>
+            <Insets />
+         </HBox.margin>
+        </VBox>
+        <VBox alignment="TOP_CENTER" disable="true" layoutX="329.0" layoutY="253.0" AnchorPane.leftAnchor="329.0" AnchorPane.topAnchor="253.0">
+            <Line endY="400.0" rotate="180.0" stroke="#e0eadf" />
+        </VBox>
+        <VBox alignment="CENTER" layoutX="962.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="41.0" AnchorPane.leftAnchor="962.0" AnchorPane.topAnchor="253.0">
+         <Label stylesheets="@../css/style.css" text="Scheduled">
+            <font>
+               <Font size="30.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Label>
+            <fx:include source="task.fxml" />
+            <fx:include source="task.fxml" />
+            <fx:include source="task.fxml" />
+        </VBox>
+    </HBox>
 </AnchorPane>

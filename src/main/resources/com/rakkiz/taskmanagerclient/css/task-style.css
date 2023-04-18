@@ -3,14 +3,14 @@
 
 .taskTitle{
     -fx-text-fill: #E63946;
-    -fx-font-family: 'firaSemiBold';
-    -fx-font-weight: 500;
-    -fx-font-size: 24px;
+    -fx-font-family: 'Fira Medium';
+    -fx-font-weight: 700;
+    -fx-font-size: 20px;
     -fx-line-spacing: 5px;
 }
 
 .taskDesc{
-    -fx-font-family: 'Merriweather light';
+    -fx-font-family: 'Merriweather Italic';
     -fx-font-size: 16px;
     -fx-font-weight: 400;
     -fx-font-style: italic;
@@ -26,5 +26,5 @@
 }
 
 .task {
-    -fx-effect: dropshadow(three-pass-box, rgba(69,123,157,0.26), 10, 0, 3, 1);
+    -fx-effect: dropshadow(three-pass-box, rgba(69,123,157,0.26), 10, 0, 1, 2);
 }
