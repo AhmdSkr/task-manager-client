@@ -5,6 +5,8 @@ package data {
 
     package model {
         class Task {
+            + {static} NAME_LEN_MAX : int
+            + {static} DESC_LEN_MAX : int
             + {static} DEFAULT_NAME : String
             + {static} DEFAULT_DESCRIPTION : String
             - taskId : Integer
@@ -25,6 +27,27 @@ package data {
         }
     }
     package util {
+        class DerbyDatabaseConnector {
+            + getConnection() : java.sql.Connection
+        }
+        class SchemaManager {
+            + {static} TASK_TABLE : String
+            + {static} TASK_ID : String
+            + {static} TASK_NAME : String
+            + {static} TASK_DESC : String
+            + {static} TASK_CREATED_AT : String
+
+            - connection : java.sql.Connection
+
+            + SchemaManager(connection : java.sql.Connection)
+
+            + getCreationDefinition() : String
+            + getDestructionDefinition() : String
+            + isEstablished() : boolean
+            + establishSchema()
+            + drop()
+
+        }
 
         interface Paginator<Type> {
             + isPageable(): boolean
@@ -45,11 +68,33 @@ package data {
     interface TaskRepository {
         + create(Task)
         + getByTaskId(Integer) : Task
+        + getAllTasks() : List<Task>
         + getByCreationInterval(start : Instant, durationAfter Integer) : List<Task>
         + update(Task)
-        + delete(taskId : Integer)
+        + delete(Task)
     }
     TaskRepository ..> Task : supplies
 
+    class DerbyTaskRepository {
+        + {static} UPDATE_FAILURE_EXCEPTION_MESSAGE : String
+        + {static} NULL_ID_EXCEPTION_MESSAGE : String
+        - {static} insertFormat : String
+        - {static} readFormat : String
+        - {static} updateFormat : String
+        - {static} deleteFormat : String
+        - connection : java.sql.Connection
+        - insertStatement : java.sql.PreparedStatement
+        - readAllStatement : java.sql.PreparedStatement
+        - readByIdStatement : java.sql.PreparedStatement
+        - readByCreationIntervalStatement : java.sql.PreparedStatement
+        - updateStatement : java.sql.PreparedStatement
+        - deleteStatement : java.sql.PreparedStatement
+        + DerbyTaskRepository()
+    }
+    TaskRepository <|.. DerbyTaskRepository : realizes
+    DerbyTaskRepository ..> SchemaManager : uses
+    DerbyTaskRepository ..> DerbyDatabaseConnector : uses
 }
+package view {}
+package controller {}
 @enduml
