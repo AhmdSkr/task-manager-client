@@ -12,7 +12,7 @@
             <Image url="@../images/calendar.png" />
          </image></ImageView>
       <Label stylesheets="@../css/filter.css" text="Due" />
-      <VBox alignment="CENTER_RIGHT">
+      <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
          <children>
             <ImageView fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                <image>

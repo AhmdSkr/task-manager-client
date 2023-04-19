@@ -14,7 +14,6 @@ public class TaskSackController {
 
         //Bind the height of the line to the height of the vbox
         double maxHeight = Math.max(unVBox.getHeight(), sVBox.getHeight());
-        lineVBox.setPrefHeight(maxHeight);
         lineVBox.setMaxHeight(maxHeight);
         line.endYProperty().bind(lineVBox.heightProperty());
 
