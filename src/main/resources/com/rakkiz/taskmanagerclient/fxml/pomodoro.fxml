@@ -117,14 +117,23 @@
                         <fx:include source="filter.fxml" />
                      </children>
                   </HBox>
-                  <VBox alignment="CENTER" layoutX="962.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="41.0" AnchorPane.leftAnchor="962.0" AnchorPane.topAnchor="253.0">
-                     <fx:include source="task.fxml" />
-                     <fx:include source="task.fxml" />
-                     <fx:include source="task.fxml" />
-                     <VBox.margin>
-                        <Insets />
-                     </VBox.margin>
-                  </VBox>
+                  <ScrollPane fitToWidth="true" minWidth="600.0" prefHeight="450.0">
+                     <content>
+                        <VBox prefWidth="542.0" spacing="10">
+                           <fx:include source="task.fxml" />
+                           <fx:include source="task.fxml" />
+                           <fx:include source="task.fxml" />
+                           <fx:include source="task.fxml" />
+                           <fx:include source="task.fxml" />
+                           <fx:include source="task.fxml" />
+                        </VBox>
+                     </content>
+                     <padding>
+                        <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
+                     </padding>
+
+                  </ScrollPane>
+
                   <Button alignment="CENTER" mnemonicParsing="false" style="-fx-background-color: trasnparent; -fx-text-fill: grey; -fx-font-size: 24px;" text="+ Add Task">
                      <VBox.margin>
                         <Insets top="30.0" />
@@ -135,7 +144,7 @@
                   </Button>
                </children>
                <HBox.margin>
-                  <Insets left="200.0" />
+                  <Insets left="150.0" />
                </HBox.margin>
                <opaqueInsets>
                   <Insets />
