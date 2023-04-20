@@ -5,31 +5,31 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="651.0" prefWidth="1134.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsControllers">
-   <children>
-      <TextField layoutX="27.0" layoutY="65.0" text="Review Operating Systems 2" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="65.0">
-         <font>
-            <Font size="24.0" />
-         </font>
-      </TextField>
-      <Button fx:id="backButton" layoutX="18.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" styleClass="backButton" text="Button" />
-      <HBox layoutX="27.0" layoutY="123.0" prefHeight="162.0" prefWidth="298.0" spacing="10.0">
-         <children>
-            <fx:include source="filter.fxml" />
-            <fx:include source="filter.fxml" />
-            <fx:include source="filter.fxml" />
-         </children>
-      </HBox>
-      <Line endX="1000.0" layoutX="127.0" layoutY="350.0" startX="-100.0" />
-      <Label layoutX="27.0" layoutY="362.0" text="Description">
-         <font>
-            <Font name="System Bold" size="36.0" />
-         </font>
-      </Label>
-      <TextArea layoutX="27.0" layoutY="421.0" prefHeight="177.0" prefWidth="1000.0" text="Write down notes and do the assignment">
-         <font>
-            <Font name="System Italic" size="14.0" />
-         </font>
-      </TextArea>
-   </children>
+<AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsView">
+    <children>
+        <TextField fx:id="title" focusTraversable="false" layoutX="27.0" layoutY="65.0" style="-fx-border-color: transparent; -fx-border-width: 0px; -fx-padding: 0; -fx-background-insets: 0; -fx-effect: none; -fx-background-color: transparent;" text="Review Operating Systems 2" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="65.0">
+            <font>
+                <Font size="24.0" />
+            </font>
+        </TextField>
+        <Button fx:id="backButton" layoutX="20.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" prefHeight="26.0" prefWidth="20.0" style="-fx-background-color: transparent;" styleClass="backButton" />
+        <HBox alignment="CENTER" layoutX="27.0" layoutY="124.0" prefHeight="65.0" spacing="10.0">
+            <children>
+                <fx:include source="filter.fxml" />
+                <fx:include source="filter.fxml" />
+                <fx:include source="filter.fxml" />
+            </children>
+        </HBox>
+        <Line endX="900.0" endY="-0.20710676908493042" layoutX="127.0" layoutY="350.0" startX="-100.0" stroke="#c7c7c7" AnchorPane.topAnchor="200.0" />
+        <Label layoutX="27.0" layoutY="223.0" text="Description">
+            <font>
+                <Font name="System Bold" size="36.0" />
+            </font>
+        </Label>
+        <TextArea fx:id="description" layoutX="27.0" layoutY="290.0" prefHeight="177.0" prefWidth="1000.0" style="-fx-border-color: transparent; -fx-background-insets: 0; -fx-padding: 0; -fx-background-color: transparent; -fx-border-width: 0px; -fx-effect: none; -fx-border-style: none;" text="Write down notes and do the assignment">
+            <font>
+                <Font name="System Italic" size="14.0" />
+            </font>
+        </TextArea>
+    </children>
 </AnchorPane>
