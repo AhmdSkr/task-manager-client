@@ -1,4 +1,4 @@
 package com.rakkiz.taskmanagerclient.view;
 
-public class View {
+public class PomodoroView {
 }

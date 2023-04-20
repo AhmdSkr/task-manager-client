@@ -1,0 +1,25 @@
+@font-face {
+    font-family: 'Merriweather Light';
+    src: url("../fonts/Merriweather-Light.ttf");
+}
+
+@font-face {
+    font-family: 'firaSemiBold';
+    src: url("../fonts/FiraSansCondensed-SemiBold.ttf");
+}
+
+@font-face {
+    font-family: 'Fira Medium';
+    src: url("../fonts/FiraSansCondensed-Medium.ttf");
+}
+
+@font-face {
+    font-family: 'Merriweather Italic';
+    src: url("../fonts/Merriweather-Italic.ttf");
+}
+
+@font-face {
+    font-family: 'PTSerif Regular';
+    src: url("../fonts/PTSerif-Regular.ttf");
+}
+
