@@ -11,7 +11,7 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 
-public class NavBarController {
+public class NavBarView {
     @FXML
     private Hyperlink taskSack;
     @FXML

@@ -4,6 +4,8 @@ import java.util.Objects;
 
 public class Task {
 
+    public static final int NAME_LEN_MAX = 70;
+    public static final int DESC_LEN_MAX = 3000;
     public static final String DEFAULT_NAME = "Untitled";
     public static final String DEFAULT_DESCRIPTION = "";
 

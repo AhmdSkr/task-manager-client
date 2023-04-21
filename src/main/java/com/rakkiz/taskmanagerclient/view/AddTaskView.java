@@ -1,4 +1,4 @@
 package com.rakkiz.taskmanagerclient.view;
 
-public class PomodoroController {
+public class AddTaskView {
 }

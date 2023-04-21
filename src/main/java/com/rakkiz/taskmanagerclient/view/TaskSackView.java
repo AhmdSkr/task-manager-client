@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Line;
 
-public class TaskSackController {
+public class TaskSackView {
     @FXML
     private Line line;
     @FXML
