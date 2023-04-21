@@ -1,18 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="651.0" prefWidth="1134.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsControllers">
+<AnchorPane prefHeight="651.0" prefWidth="1134.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsControllers">
    <children>
       <TextField layoutX="27.0" layoutY="65.0" text="Review Operating Systems 2" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="65.0">
          <font>
             <Font size="24.0" />
          </font>
       </TextField>
-      <Button fx:id="backButton" layoutX="18.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" styleClass="backButton" text="Button" />
+      <Button fx:id="backButton" layoutX="18.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack" styleClass="backButton">
+         <graphic>
+            <ImageView fitHeight="20.0" fitWidth="20.0">
+               <Image url="@../images/back-arrow.png" />
+            </ImageView>
+         </graphic>
+         <cursor>
+            <Cursor fx:constant="HAND" />
+         </cursor>
+      </Button>
       <HBox layoutX="27.0" layoutY="123.0" prefHeight="162.0" prefWidth="298.0" spacing="10.0">
          <children>
             <fx:include source="filter.fxml" />
@@ -32,4 +43,7 @@
          </font>
       </TextArea>
    </children>
+   <cursor>
+      <Cursor fx:constant="DEFAULT" />
+   </cursor>
 </AnchorPane>
