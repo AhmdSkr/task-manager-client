@@ -1,6 +1,6 @@
 package com.rakkiz.taskmanagerclient.view;
 
-import com.rakkiz.taskmanagerclient.HelloApplication;
+import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -38,7 +38,7 @@ public class TaskView {
         popupStage.initModality(Modality.APPLICATION_MODAL);
 
         // create the popup scene from the FXML file
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/task-details.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-details.fxml"));
         Parent popupContent = (Parent) fxmlLoader.load();
         Scene popupScene = new Scene(popupContent);
 
