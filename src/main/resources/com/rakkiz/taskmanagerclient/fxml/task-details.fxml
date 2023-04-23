@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="651.0" prefWidth="1134.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsControllers">
+<AnchorPane prefHeight="651.0" prefWidth="1134.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsView">
    <children>
       <TextField layoutX="27.0" layoutY="65.0" text="Review Operating Systems 2" AnchorPane.leftAnchor="27.0" AnchorPane.topAnchor="65.0">
          <font>
