@@ -59,7 +59,7 @@
             </AnchorPane>
         </AnchorPane>
     </VBox>
-    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1263.0"
+    <AnchorPane fx:id="content" minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1263.0"
                 AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="100.0">
         <fx:include minHeight="-Infinity" minWidth="-Infinity" source="task-sack.fxml" AnchorPane.leftAnchor="0.0"
                     AnchorPane.topAnchor="0.0"/>
