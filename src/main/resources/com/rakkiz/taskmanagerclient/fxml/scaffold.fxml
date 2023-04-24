@@ -1,12 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.MainController">
-    <fx:include source="nav-side-bar.fxml" />
-    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1263.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100.0">
-        <children>
-            <fx:include minHeight="-Infinity" minWidth="-Infinity" source="task-sack.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-        </children>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea"
+            fx:controller="com.rakkiz.taskmanagerclient.controller.MainController">
+    <VBox>
+        <AnchorPane scaleShape="false" style="-fx-background-color: #F9F9F9;">
+            <AnchorPane id="sideBar" layoutX="7.0" layoutY="8.0" prefHeight="1117.0" prefWidth="289.0"
+                        style="-fx-background-color: #F3F3F3;" stylesheets="@../css/style.css"
+                        AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <ImageView fitHeight="50.0" fitWidth="207.0" layoutX="18.0" layoutY="69.0" pickOnBounds="true"
+                           preserveRatio="true" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="64.0">
+                    <Image url="@../images/logo.png"/>
+                </ImageView>
+                <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="176.0" vgap="10.0"
+                          AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="176.0">
+                    <HBox alignment="CENTER" cacheShape="false" centerShape="false" layoutX="43.0"
+                          scaleShape="false" spacing="10.0"
+                          stylesheets="@../css/style.css">
+                        <ImageView fitHeight="29.29" fitWidth="29.29" mouseTransparent="true"
+                                   pickOnBounds="true" preserveRatio="true">
+                            <viewport>
+                                <Rectangle2D minX="30.0"/>
+                            </viewport>
+                            <Image url="@../images/tasks.png"/>
+                        </ImageView>
+                        <Hyperlink fx:id="taskSack" alignment="CENTER" onAction="#onTaskSackClick"
+                                   onMouseClicked="#onTaskSackClick" styleClass="navItem"
+                                   stylesheets="@../css/style.css" text="Task Sack" textFill="#201f1a"
+                                   wrapText="true">
+                            <font>
+                                <Font name="AdobeDevanagari-Regular" size="24.0"/>
+                            </font>
+                        </Hyperlink>
+                    </HBox>
+                    <HBox alignment="CENTER" layoutX="43.0" prefHeight="45.0" spacing="10.0"
+                          stylesheets="@../css/style.css">
+                        <FlowPane.margin>
+                            <Insets left="7.0"/>
+                        </FlowPane.margin>
+                        <ImageView fitHeight="29.29" fitWidth="29.29" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <Image url="@../images/pomodoro.png"/>
+                        </ImageView>
+                        <Hyperlink fx:id="pomodoro" alignment="CENTER" onAction="#onPomodoroClick"
+                                   styleClass="navItem" stylesheets="@../css/style.css" text="Pomodoro"
+                                   textFill="#201f1a" wrapText="true">
+                            <font>
+                                <Font name="Algerian" size="24.0"/>
+                            </font>
+                        </Hyperlink>
+                    </HBox>
+                </FlowPane>
+            </AnchorPane>
+        </AnchorPane>
+    </VBox>
+    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1263.0"
+                AnchorPane.leftAnchor="310.0" AnchorPane.topAnchor="100.0">
+        <fx:include minHeight="-Infinity" minWidth="-Infinity" source="task-sack.fxml" AnchorPane.leftAnchor="0.0"
+                    AnchorPane.topAnchor="0.0"/>
     </AnchorPane>
 </AnchorPane>

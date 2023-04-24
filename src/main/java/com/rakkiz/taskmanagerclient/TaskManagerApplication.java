@@ -14,7 +14,7 @@ import java.io.IOException;
 public class TaskManagerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/MainScaffold.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/scaffold.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();

@@ -1,7 +1,6 @@
 package com.rakkiz.taskmanagerclient.view.factory;
 
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.TaskView;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.AnchorPane;
 import java.io.IOException;
