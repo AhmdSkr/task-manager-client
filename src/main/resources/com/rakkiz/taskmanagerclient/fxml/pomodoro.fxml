@@ -3,9 +3,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="1117.0" prefWidth="1728.0" stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroView">
+<Pane stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroView">
     <children>
         <HBox prefHeight="100.0" prefWidth="200.0">
             <children>
@@ -53,4 +52,4 @@
             </children>
         </HBox>
     </children>
-</AnchorPane>
+</Pane>
