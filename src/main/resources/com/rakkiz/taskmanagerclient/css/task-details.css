@@ -8,7 +8,7 @@
     -fx-background-color: transparent;
     -fx-background-radius: 50%;
     -fx-text-fill: black;
-    -fx-font-size: 20px;
+    /*-fx-font-size: 20px;*/
     -fx-padding: 0px;
     -fx-graphic: url("../images/back-arrow.png");
 }
