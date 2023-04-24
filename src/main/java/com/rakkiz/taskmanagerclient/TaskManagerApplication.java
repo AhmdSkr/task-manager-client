@@ -8,17 +8,16 @@ import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class HelloApplication extends Application {
+public class TaskManagerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/task-sack.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
-        Scene scene = new Scene(fxmlLoader.load(), bounds.getWidth(), bounds.getHeight(), Color.web("#f4f4f4"));
         stage.setTitle("Rakkiz");
         Image icon = new Image(getClass().getResourceAsStream("images/icon.png"));
         stage.getIcons().add(icon);

@@ -1,6 +1,6 @@
 package com.rakkiz.taskmanagerclient.view;
 
-import com.rakkiz.taskmanagerclient.HelloApplication;
+import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -26,7 +26,7 @@ public class NavBarView {
 
     @FXML
     private void onTaskSackClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/task-sack.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) taskSack.getScene().getWindow();
         stage.setScene(scene);
@@ -35,7 +35,7 @@ public class NavBarView {
 
     @FXML
     private void onPomodoroClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("fxml/pomodoro.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/pomodoro.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) pomodoro.getScene().getWindow();
         stage.setScene(scene);
