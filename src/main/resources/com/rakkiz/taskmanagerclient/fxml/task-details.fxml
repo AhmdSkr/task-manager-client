@@ -7,6 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 <AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskDetailsController">
     <children>
 
@@ -21,7 +23,13 @@
 
         <!-- Back Button -->
         <Button fx:id="backButton" layoutX="20.0" layoutY="26.0" mnemonicParsing="false" onAction="#goBack"
-                prefHeight="26.0" prefWidth="20.0" style="-fx-background-color: transparent;" styleClass="backButton"/>
+                prefHeight="26.0" prefWidth="20.0" style="-fx-background-color: transparent;" styleClass="backButton">
+            <graphic>
+                <ImageView fitHeight="18.0" fitWidth="18.0">
+                    <Image url="@../images/back-arrow.png" />
+                </ImageView>
+            </graphic>
+        </Button>
 
         <!-- Options -->
         <HBox alignment="CENTER" layoutX="27.0" layoutY="124.0" prefHeight="65.0" spacing="10.0">
