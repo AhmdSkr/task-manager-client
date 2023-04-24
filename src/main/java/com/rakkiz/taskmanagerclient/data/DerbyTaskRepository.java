@@ -15,7 +15,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
 
     public static final String UPDATE_FAILURE_EXCEPTION_MESSAGE = "Task update failed, no rows affected";
     public static final String NULL_ID_EXCEPTION_MESSAGE = "Task's ID must not be null";
-
+    private static DerbyTaskRepository instance = null;
     private final Connection connection;
 
     private final PreparedStatement insertStatement;
@@ -33,7 +33,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
     /**
      * @throws SQLException if access is not granted to database or if connection is not valid
      */
-    public DerbyTaskRepository() throws SQLException {
+    private DerbyTaskRepository() throws SQLException {
         this.connection = new DerbyDatabaseConnector().getConnection();
         new SchemaManager(connection).establishSchema();
         String tableName = SchemaManager.TASK_TABLE;
@@ -74,6 +74,11 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         SchemaManager.TASK_NAME + " = ?, " + SchemaManager.TASK_DESC + " = ?",
                         SchemaManager.TASK_ID + " = ?"
                 ));
+    }
+
+    public static DerbyTaskRepository getInstance() throws SQLException {
+        if (instance == null) instance = new DerbyTaskRepository();
+        return instance;
     }
 
     public void create(Task task) throws SQLException {

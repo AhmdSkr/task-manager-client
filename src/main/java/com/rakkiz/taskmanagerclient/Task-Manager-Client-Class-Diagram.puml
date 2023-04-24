@@ -78,6 +78,7 @@ package data {
     class DerbyTaskRepository {
         + {static} UPDATE_FAILURE_EXCEPTION_MESSAGE : String
         + {static} NULL_ID_EXCEPTION_MESSAGE : String
+        - {static} instance : DerbyTaskRepository
         - {static} insertFormat : String
         - {static} readFormat : String
         - {static} updateFormat : String
@@ -89,7 +90,8 @@ package data {
         - readByCreationIntervalStatement : java.sql.PreparedStatement
         - updateStatement : java.sql.PreparedStatement
         - deleteStatement : java.sql.PreparedStatement
-        + DerbyTaskRepository()
+        - DerbyTaskRepository()
+        + {static} getInstance() : DerbyTaskRepository
     }
     TaskRepository <|.. DerbyTaskRepository : realizes
     DerbyTaskRepository ..> SchemaManager : uses
