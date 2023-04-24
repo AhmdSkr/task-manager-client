@@ -19,7 +19,7 @@ public class TaskRepositoryTest extends TestCase {
 
     @BeforeAll
     public void testConstruction() throws SQLException {
-        repository = new DerbyTaskRepository();
+        repository = DerbyTaskRepository.getInstance();
     }
 
     @Test
