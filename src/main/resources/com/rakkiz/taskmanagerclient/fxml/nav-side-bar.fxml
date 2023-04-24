@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.NavBarView">
+<VBox fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.NavBarController">
     <children>
         <AnchorPane scaleShape="false" style="-fx-background-color: #F9F9F9;">
             <children>

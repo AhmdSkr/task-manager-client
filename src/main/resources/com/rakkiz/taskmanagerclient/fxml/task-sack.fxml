@@ -7,7 +7,7 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskSackView">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskSackController">
     <!-- Task Header -->
     <HBox alignment="CENTER" layoutX="324.0" layoutY="79.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="700.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
         <children>
@@ -53,27 +53,26 @@
             </Label>
             <!--                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">-->
             <!--                        <children>-->
-            <!--                            <fx:include source="task.fxml" />-->
-            <!--                            <fx:include source="task.fxml" />-->
-            <!--                            <fx:include source="task.fxml" />-->
+            <!--                            <fx:include source="task-card.fxml" />-->
+            <!--                            <fx:include source="task-card.fxml" />-->
+            <!--                            <fx:include source="task-card.fxml" />-->
             <!--                        </children>-->
             <!--                    </VBox>-->
             <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0">
                 <content>
                     <VBox prefWidth="542.0" spacing="10">
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
                     </VBox>
                 </content>
                 <padding>
                     <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
                 </padding>
             </ScrollPane>
-            <fx:include source="addTask.fxml" />
         </VBox>
 
         <!-- Vertical Line -->
@@ -93,24 +92,24 @@
             </Label>
             <!--               <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">-->
             <!--                  <children>-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
-            <!--                          <fx:include source="task.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
+            <!--                          <fx:include source="task-card.fxml" />-->
             <!--                  </children>-->
             <!--               </VBox>-->
             <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0">
                 <content>
                     <VBox prefWidth="542.0" spacing="10">
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
-                        <fx:include source="task.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
+                        <fx:include source="task-card.fxml" />
                     </VBox>
                 </content>
                 <padding>

@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
-<AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskDetailsView">
+<AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskDetailsController">
     <children>
 
         <!-- Task Title -->

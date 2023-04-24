@@ -10,7 +10,7 @@
       minHeight="-Infinity"
       minWidth="-Infinity" prefHeight="45.0" spacing="7.0" styleClass="container"
       stylesheets="@../css/filter.css" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      fx:controller="com.rakkiz.taskmanagerclient.view.FilterView">
+      fx:controller="com.rakkiz.taskmanagerclient.controller.FilterController">
     <children>
         <ImageView fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
             <image>

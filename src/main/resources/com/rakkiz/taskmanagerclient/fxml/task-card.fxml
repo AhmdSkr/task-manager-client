@@ -4,7 +4,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane fx:id="task" onMouseClicked="#goToDetails" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #FDEBED;" styleClass="task" stylesheets="@../css/task-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.TaskView">
+<AnchorPane fx:id="task" onMouseClicked="#goToDetails" prefHeight="100.0" prefWidth="500.0" style="-fx-background-color: #FDEBED;" styleClass="task" stylesheets="@../css/task-style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskCardController">
     <children>
         <Label fx:id="title" layoutX="28.0" layoutY="14.0" styleClass="taskTitle" stylesheets="@../css/task-style.css" text="Research Design Patterns" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0" />
         <Label fx:id="description" layoutX="14.0" layoutY="79.0" styleClass="taskDesc" stylesheets="@../css/task-style.css" text="Check the types of design patterns and download resources" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="55.0" />

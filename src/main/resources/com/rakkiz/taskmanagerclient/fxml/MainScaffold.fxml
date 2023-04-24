@@ -2,9 +2,9 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.MainScaffoldView">
+<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.MainController">
     <fx:include source="nav-side-bar.fxml" />
-    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100.0">
+    <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="807.0" prefWidth="1263.0" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="100.0">
         <children>
             <fx:include minHeight="-Infinity" minWidth="-Infinity" source="task-sack.fxml" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
         </children>

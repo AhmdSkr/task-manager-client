@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroView">
+<Pane stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.PomodoroController">
     <children>
         <HBox>
             <children>
@@ -25,12 +25,12 @@
                         <ScrollPane fitToWidth="true" minWidth="600.0" prefHeight="450.0">
                             <content>
                                 <VBox prefWidth="542.0" spacing="10">
-                                    <fx:include source="task.fxml" />
-                                    <fx:include source="task.fxml" />
-                                    <fx:include source="task.fxml" />
-                                    <fx:include source="task.fxml" />
-                                    <fx:include source="task.fxml" />
-                                    <fx:include source="task.fxml" />
+                                    <fx:include source="task-card.fxml" />
+                                    <fx:include source="task-card.fxml" />
+                                    <fx:include source="task-card.fxml" />
+                                    <fx:include source="task-card.fxml" />
+                                    <fx:include source="task-card.fxml" />
+                                    <fx:include source="task-card.fxml" />
                                 </VBox>
                             </content>
                             <padding>

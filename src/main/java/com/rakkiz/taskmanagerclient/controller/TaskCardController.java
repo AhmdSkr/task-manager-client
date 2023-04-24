@@ -1,6 +1,7 @@
-package com.rakkiz.taskmanagerclient.view;
+package com.rakkiz.taskmanagerclient.controller;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
+import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,21 +15,19 @@ import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
-public class TaskView {
-    private int id;
+public class TaskCardController {
+    private Task model;
     @FXML
     private Label title, description;
 
-    public void setTitle(String realTitle) {
-        title.setText(realTitle);
-    }
-
-    public void setDescription(String realDescription) {
-        description.setText(realDescription);
+    public void setDetails(){
+        title.setText(model.getName());
+        description.setText(model.getDescription());
     }
 
     @FXML
     private AnchorPane task;
+
     @FXML
     private void goToDetails() throws IOException {
         // create the popup stage
@@ -43,9 +42,8 @@ public class TaskView {
         Scene popupScene = new Scene(popupContent);
 
         // set stage and id of popup stage
-        TaskDetailsView controller = fxmlLoader.getController();
+        TaskDetailsController controller = fxmlLoader.getController();
         controller.setStage(popupStage);
-        controller.setId(this.id);
 
         // put stage position on screen
         popupStage.setX(300);
@@ -62,6 +60,7 @@ public class TaskView {
         popupStage.setOnHidden(event -> {
             parentRoot.setEffect(null);
         });
+
         // show the popup
         popupStage.showAndWait();
     }
