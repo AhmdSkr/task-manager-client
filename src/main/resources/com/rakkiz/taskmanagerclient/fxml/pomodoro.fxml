@@ -4,12 +4,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<Pane stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroView">
+<Pane stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.PomodoroView">
     <children>
-        <HBox prefHeight="100.0" prefWidth="200.0">
+        <HBox>
             <children>
-                <fx:include source="nav-side-bar.fxml" />
-                <fx:include source="pomodoroTimer.fxml" />
+            <fx:include source="pomodoroTimer.fxml" />
 
                 <VBox prefHeight="200.0" prefWidth="617.0" HBox.hgrow="ALWAYS">
                     <children>
@@ -19,6 +18,9 @@
                                 <fx:include source="filter.fxml" />
                                 <fx:include source="filter.fxml" />
                             </children>
+                     <VBox.margin>
+                        <Insets bottom="20.0" />
+                     </VBox.margin>
                         </HBox>
                         <ScrollPane fitToWidth="true" minWidth="600.0" prefHeight="450.0">
                             <content>
@@ -45,9 +47,6 @@
                     <opaqueInsets>
                         <Insets />
                     </opaqueInsets>
-                    <padding>
-                        <Insets top="100.0" />
-                    </padding>
                 </VBox>
             </children>
         </HBox>

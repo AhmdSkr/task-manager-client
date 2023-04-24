@@ -27,18 +27,20 @@ public class NavBarView {
     @FXML
     private void onTaskSackClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) taskSack.getScene().getWindow();
-        stage.setScene(scene);
+
+        //TODO : add the taskSack as child in MainScaffold
+
         stage.show();
     }
 
     @FXML
     private void onPomodoroClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/pomodoro.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
         Stage stage = (Stage) pomodoro.getScene().getWindow();
-        stage.setScene(scene);
+
+        //TODO : add the taskSack as child in MainScaffold
+
         stage.show();
     }
 

@@ -1,72 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
-<?import javafx.geometry.Insets?>
-<?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Hyperlink?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.text.Font?>
-<VBox xmlns:fx="http://javafx.com/fxml/1" fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.2-ea"
-      fx:controller="com.rakkiz.taskmanagerclient.view.NavBarView">
+<?import javafx.scene.text.*?>
+
+<VBox fx:id="rootPane" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.view.NavBarView">
     <children>
-        <AnchorPane prefHeight="1117.0" prefWidth="1728.0" scaleShape="false" style="-fx-background-color: #F9F9F9;">
+        <AnchorPane scaleShape="false" style="-fx-background-color: #F9F9F9;">
             <children>
-                <AnchorPane id="sideBar" layoutX="7.0" layoutY="8.0" prefHeight="1117.0" prefWidth="289.0"
-                            style="-fx-background-color: #F3F3F3;" stylesheets="@../css/style.css"
-                            AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                <AnchorPane id="sideBar" layoutX="7.0" layoutY="8.0" prefHeight="1117.0" prefWidth="289.0" style="-fx-background-color: #F3F3F3;" stylesheets="@../css/style.css" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <ImageView fitHeight="50.0" fitWidth="207.0" layoutX="18.0" layoutY="69.0" pickOnBounds="true"
-                                   preserveRatio="true" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="64.0">
+                        <ImageView fitHeight="50.0" fitWidth="207.0" layoutX="18.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="64.0">
                             <image>
-                                <Image url="@../images/logo.png"/>
+                                <Image url="@../images/logo.png" />
                             </image>
                         </ImageView>
-                        <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="176.0" vgap="10.0"
-                                  AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="176.0">
+                        <FlowPane alignment="CENTER" columnHalignment="CENTER" layoutY="176.0" vgap="10.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="176.0">
                             <children>
-                                <HBox alignment="CENTER" cacheShape="false" centerShape="false" layoutX="43.0"
-                                      scaleShape="false" spacing="10.0" styleClass="navHbox"
-                                      stylesheets="@../css/style.css">
+                                <HBox alignment="CENTER" cacheShape="false" centerShape="false" layoutX="43.0" scaleShape="false" spacing="10.0" styleClass="navHbox" stylesheets="@../css/style.css">
                                     <children>
-                                        <ImageView fitHeight="29.29" fitWidth="29.29" mouseTransparent="true"
-                                                   pickOnBounds="true" preserveRatio="true">
+                                        <ImageView fitHeight="29.29" fitWidth="29.29" mouseTransparent="true" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/tasks.png"/>
+                                                <Image url="@../images/tasks.png" />
                                             </image>
                                             <viewport>
-                                                <Rectangle2D minX="30.0"/>
+                                                <Rectangle2D minX="30.0" />
                                             </viewport>
                                         </ImageView>
-                                        <Hyperlink fx:id="taskSack" alignment="CENTER" onAction="#onTaskSackClick"
-                                                   onMouseClicked="#onTaskSackClick" styleClass="navItem"
-                                                   stylesheets="@../css/style.css" text="Task Sack" textFill="#201f1a"
-                                                   wrapText="true">
+                                        <Hyperlink fx:id="taskSack" alignment="CENTER" onAction="#onTaskSackClick" onMouseClicked="#onTaskSackClick" styleClass="navItem" stylesheets="@../css/style.css" text="Task Sack" textFill="#201f1a" wrapText="true">
                                             <font>
-                                                <Font name="AdobeDevanagari-Regular" size="24.0"/>
+                                                <Font name="AdobeDevanagari-Regular" size="24.0" />
                                             </font>
                                         </Hyperlink>
                                     </children>
                                 </HBox>
-                                <HBox alignment="CENTER" layoutX="43.0" prefHeight="45.0" spacing="10.0"
-                                      styleClass="navHBox" stylesheets="@../css/style.css">
+                                <HBox alignment="CENTER" layoutX="43.0" prefHeight="45.0" spacing="10.0" styleClass="navHBox" stylesheets="@../css/style.css">
                                     <children>
-                                        <ImageView fitHeight="29.29" fitWidth="29.29" pickOnBounds="true"
-                                                   preserveRatio="true">
+                                        <ImageView fitHeight="29.29" fitWidth="29.29" pickOnBounds="true" preserveRatio="true">
                                             <image>
-                                                <Image url="@../images/pomodoro.png"/>
+                                                <Image url="@../images/pomodoro.png" />
                                             </image>
                                         </ImageView>
-                                        <Hyperlink fx:id="pomodoro" alignment="CENTER" onAction="#onPomodoroClick"
-                                                   styleClass="navItem" stylesheets="@../css/style.css" text="Pomodoro"
-                                                   textFill="#201f1a" wrapText="true">
+                                        <Hyperlink fx:id="pomodoro" alignment="CENTER" onAction="#onPomodoroClick" styleClass="navItem" stylesheets="@../css/style.css" text="Pomodoro" textFill="#201f1a" wrapText="true">
                                             <font>
-                                                <Font name="Algerian" size="24.0"/>
+                                                <Font name="Algerian" size="24.0" />
                                             </font>
                                         </Hyperlink>
                                     </children>
                                     <FlowPane.margin>
-                                        <Insets left="7.0"/>
+                                        <Insets left="7.0" />
                                     </FlowPane.margin>
                                 </HBox>
                             </children>
