@@ -8,7 +8,7 @@
     <children>
         <Label fx:id="title" ellipsisString="..." layoutX="28.0" layoutY="14.0" maxHeight="10.0" maxWidth="300.0" styleClass="taskTitle" stylesheets="@../css/task-style.css" text="Research Design Patterns" textOverrun="CLIP" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="17.0" />
         <Label fx:id="description" ellipsisString="..." layoutX="14.0" layoutY="79.0" maxHeight="10.0" maxWidth="450.0" styleClass="taskDesc" stylesheets="@../css/task-style.css" text="Check the types of design patterns and download resources" textOverrun="ELLIPSIS" wrapText="true" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="55.0" />
-        <Button layoutX="548.0" layoutY="10.0" mnemonicParsing="false" styleClass="btnDel" stylesheets="@../css/task-style.css" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="5.0">
+        <Button layoutX="548.0" layoutY="10.0" mnemonicParsing="false" onAction="#deleteTask" styleClass="btnDel" stylesheets="@../css/task-style.css" AnchorPane.rightAnchor="11.0" AnchorPane.topAnchor="5.0">
             <graphic>
                 <ImageView fitHeight="18.0" fitWidth="18.0">
                     <Image url="@../images/close.png" />
