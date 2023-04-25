@@ -6,14 +6,17 @@ import com.rakkiz.taskmanagerclient.data.model.Task;
 import com.rakkiz.taskmanagerclient.view.factory.TaskCardFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
 public class AddTaskController {
 
+    @FXML
+    private AnchorPane anchorRoot;
     DerbyTaskRepository taskrepo = DerbyTaskRepository.getInstance();
 
     public AddTaskController() throws SQLException {
@@ -24,11 +27,18 @@ public class AddTaskController {
         Task task = new Task();
         taskrepo.create(task);
 
+        // add the taskCard to the taskSack
+        FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-card.fxml"));
+        AnchorPane taskAnchor = loader.load();
+        TaskCardController controller = loader.getController();
+        controller.setTask(task);
 
-        // TODO: show the taskDetails of the card
+        Scene scene = anchorRoot.getScene();
+        VBox vbox = (VBox) scene.lookup("#allTasks");
+        vbox.getChildren().add(taskAnchor);
 
-
-        // TODO: add the taskCard to the taskSack
+        // show the taskDetails of the card
+        controller.goToDetails();
 
         System.out.println("addTask Complete");
     }

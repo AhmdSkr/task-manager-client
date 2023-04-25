@@ -60,13 +60,8 @@
             <!--                    </VBox>-->
             <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0">
                 <content>
-                    <VBox prefWidth="542.0" spacing="10">
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
+                    <VBox fx:id="allTasks" maxWidth="542.0" prefWidth="542.0" spacing="10">
+
                     </VBox>
                 </content>
                 <padding>
@@ -90,26 +85,10 @@
                     <Insets top="10.0" />
                 </VBox.margin>
             </Label>
-            <!--               <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">-->
-            <!--                  <children>-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                          <fx:include source="task-card.fxml" />-->
-            <!--                  </children>-->
-            <!--               </VBox>-->
             <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0">
                 <content>
-                    <VBox prefWidth="542.0" spacing="10">
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
-                        <fx:include source="task-card.fxml" />
+                    <VBox maxWidth="542.0" prefWidth="542.0" spacing="10">
+
                     </VBox>
                 </content>
                 <padding>

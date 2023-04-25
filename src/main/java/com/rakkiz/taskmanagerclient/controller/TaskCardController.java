@@ -46,9 +46,10 @@ public class TaskCardController {
         Parent popupContent = fxmlLoader.load();
         Scene popupScene = new Scene(popupContent);
 
-        // set stage and id of popup stage
+        // set stage popup stage
         TaskDetailsController controller = fxmlLoader.getController();
         controller.setStage(popupStage);
+        controller.setTaskDetails(this.model);
 
         // put stage position on screen
         popupStage.setX(300);
@@ -61,8 +62,11 @@ public class TaskCardController {
         BoxBlur blur = new BoxBlur(10, 10, 3);
         Parent parentRoot = task.getScene().getRoot();
         parentRoot.setEffect(blur);
-        popupStage.setOnHidden(event -> parentRoot.setEffect(null));
 
+        popupStage.setOnHidden(event -> {
+            parentRoot.setEffect(null);
+            this.setDetails();
+        });
         // show the popup
         popupStage.showAndWait();
     }

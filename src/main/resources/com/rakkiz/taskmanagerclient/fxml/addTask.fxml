@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.AddTaskController">
+<AnchorPane fx:id="anchorRoot" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.AddTaskController">
    <children>
       <Button alignment="CENTER" mnemonicParsing="false" onAction="#addTask" style="-fx-background-color: transparent; -fx-text-fill: #E63946; -fx-font-size: 24px;" text="+ Add Task">
          <cursor>

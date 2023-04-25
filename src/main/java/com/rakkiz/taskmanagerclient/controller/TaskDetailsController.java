@@ -44,7 +44,7 @@ public class TaskDetailsController {
     // save changed data to model
     private void saveData() throws SQLException {
         task.setName(title.getText());
-        task.setDescription(title.getText());
+        task.setDescription(description.getText());
 
         DerbyTaskRepository taskrepo = DerbyTaskRepository.getInstance();
         taskrepo.update(this.task);
