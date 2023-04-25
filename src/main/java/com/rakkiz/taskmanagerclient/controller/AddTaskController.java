@@ -3,7 +3,6 @@ package com.rakkiz.taskmanagerclient.controller;
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.factory.TaskCardFactory;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
