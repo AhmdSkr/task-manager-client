@@ -5,25 +5,38 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.paint.Color;
 import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.io.InputStream;
 
 public class TaskManagerApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/scaffold.fxml"));
-        Scene scene = new Scene(fxmlLoader.load());
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-        stage.setTitle("Rakkiz");
-        Image icon = new Image(getClass().getResourceAsStream("images/icon.png"));
-        stage.getIcons().add(icon);
-        stage.setScene(scene);
-        stage.setMaximized(true);
-        stage.setWidth(bounds.getWidth());
+
+        {
+            final String APP_TITLE = "Rakkiz";
+            final String APP_ICON_PATH = "images/icon.png";
+            final String APP_MAIN_FXML = "fxml/MainScaffold.fxml";
+
+
+            stage.setTitle(APP_TITLE);
+            InputStream input = getClass().getResourceAsStream(APP_ICON_PATH);
+            if (input != null) {
+                stage.getIcons().add(new Image(input));
+                input.close();
+            }
+            Screen screen = Screen.getPrimary();
+            Rectangle2D bounds = screen.getVisualBounds();
+            stage.setWidth(bounds.getWidth());
+            stage.setMaximized(true);
+
+            FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource(APP_MAIN_FXML));
+            Scene scene = new Scene(fxmlLoader.load());
+            stage.setScene(scene);
+        }
+
         stage.show();
     }
 
