@@ -17,10 +17,20 @@ import java.io.IOException;
 
 public class TaskCardController {
     private Task model;
+
+    public TaskCardController() {
+        this.model = new Task();
+    }
+
+    public void setTask(Task model) {
+        this.model = model;
+        this.setDetails();
+    }
+
     @FXML
     private Label title, description;
 
-    public void setDetails(){
+    public void setDetails() {
         title.setText(model.getName());
         description.setText(model.getDescription());
     }
@@ -29,7 +39,8 @@ public class TaskCardController {
     private AnchorPane task;
 
     @FXML
-    private void goToDetails() throws IOException {
+    public void goToDetails() throws IOException {
+        System.out.println("going to details");
         // create the popup stage
         Stage popupStage = new Stage();
         popupStage.initStyle(StageStyle.UNDECORATED);
@@ -41,9 +52,10 @@ public class TaskCardController {
         Parent popupContent = (Parent) fxmlLoader.load();
         Scene popupScene = new Scene(popupContent);
 
-        // set stage and id of popup stage
+        // set stage popup stage
         TaskDetailsController controller = fxmlLoader.getController();
         controller.setStage(popupStage);
+        controller.setTaskDetails(this.model);
 
         // put stage position on screen
         popupStage.setX(300);
