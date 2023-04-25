@@ -81,14 +81,14 @@ public class Task {
      * @param name task's new name
      */
     public void setName(String name) {
-        this.name = name;
+        this.name = name.trim();
     }
     /**
      * sets the description of a specific task
      * @param description task's new description
      */
     public void setDescription(String description) {
-        this.description = description;
+        this.description = description.trim();
     }
 
     /**
