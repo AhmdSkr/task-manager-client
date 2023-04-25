@@ -18,7 +18,7 @@ public class TaskManagerApplication extends Application {
         {
             final String APP_TITLE = "Rakkiz";
             final String APP_ICON_PATH = "images/icon.png";
-            final String APP_MAIN_FXML = "fxml/MainScaffold.fxml";
+            final String APP_MAIN_FXML = "fxml/scaffold.fxml";
 
 
             stage.setTitle(APP_TITLE);
