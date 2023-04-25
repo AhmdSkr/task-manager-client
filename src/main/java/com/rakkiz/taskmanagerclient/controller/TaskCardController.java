@@ -17,26 +17,20 @@ import java.io.IOException;
 
 public class TaskCardController {
     private Task model;
+    @FXML
+    private AnchorPane task;
+    @FXML
+    private Label title, description;
 
-    public TaskCardController() {
-        this.model = new Task();
-    }
-
-    public void setTask(Task model) {
+    public void setTaskModel(Task model) {
         this.model = model;
         this.setDetails();
     }
 
-    @FXML
-    private Label title, description;
-
     public void setDetails() {
-        title.setText(model.getName());
-        description.setText(model.getDescription());
+        title.setText(this.model.getName());
+        description.setText(this.model.getDescription());
     }
-
-    @FXML
-    private AnchorPane task;
 
     @FXML
     public void goToDetails() throws IOException {
@@ -49,13 +43,12 @@ public class TaskCardController {
 
         // create the popup scene from the FXML file
         FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-details.fxml"));
-        Parent popupContent = (Parent) fxmlLoader.load();
+        Parent popupContent = fxmlLoader.load();
         Scene popupScene = new Scene(popupContent);
 
-        // set stage popup stage
+        // set stage and id of popup stage
         TaskDetailsController controller = fxmlLoader.getController();
         controller.setStage(popupStage);
-        controller.setTaskDetails(this.model);
 
         // put stage position on screen
         popupStage.setX(300);
@@ -68,10 +61,7 @@ public class TaskCardController {
         BoxBlur blur = new BoxBlur(10, 10, 3);
         Parent parentRoot = task.getScene().getRoot();
         parentRoot.setEffect(blur);
-
-        popupStage.setOnHidden(event -> {
-            parentRoot.setEffect(null);
-        });
+        popupStage.setOnHidden(event -> parentRoot.setEffect(null));
 
         // show the popup
         popupStage.showAndWait();
