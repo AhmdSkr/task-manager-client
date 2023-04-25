@@ -1,5 +1,6 @@
 package com.rakkiz.taskmanagerclient.view.factory;
 
+import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.controller.TaskCardController;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXMLLoader;
@@ -11,6 +12,7 @@ import java.net.URL;
  * The ConcreteTaskCardViewFactory is responsible for loading TaskCard views into the application. <br/>
  */
 public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
+
 
     private static final String NULL_TASK_EXCEPTION_MESSAGE = "Task Model must not be null";
     private static final String NULL_TASK_ID_EXCEPTION_MESSAGE = "Task Model's ID must not be null";
@@ -28,7 +30,7 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
      * @return FXML resource's URL
      */
     private static URL getFXMLResource() {
-        return ConcreteTaskCardViewFactory.class.getResource(FXML_PATH);
+        return TaskManagerApplication.class.getResource(FXML_PATH);
     }
 
     /**
