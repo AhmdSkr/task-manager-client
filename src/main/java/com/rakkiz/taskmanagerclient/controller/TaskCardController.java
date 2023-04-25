@@ -1,6 +1,7 @@
 package com.rakkiz.taskmanagerclient.controller;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
+import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,11 +10,13 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.effect.BoxBlur;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class TaskCardController {
     private Task model;
@@ -30,6 +33,17 @@ public class TaskCardController {
     public void setDetails() {
         title.setText(this.model.getName());
         description.setText(this.model.getDescription());
+    }
+
+    @FXML
+    private void deleteTask() throws SQLException {
+        Scene scene = task.getScene();
+        VBox vbox = (VBox) scene.lookup("#allTasks");
+        int index = vbox.getChildren().indexOf(task);
+        vbox.getChildren().remove(index);
+
+        DerbyTaskRepository taskRepository = DerbyTaskRepository.getInstance();
+        taskRepository.delete(model);
     }
 
     @FXML
