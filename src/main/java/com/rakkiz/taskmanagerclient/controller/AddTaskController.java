@@ -31,7 +31,7 @@ public class AddTaskController {
         FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-card.fxml"));
         AnchorPane taskAnchor = loader.load();
         TaskCardController controller = loader.getController();
-        controller.setTask(task);
+        controller.setTaskModel(task);
 
         Scene scene = anchorRoot.getScene();
         VBox vbox = (VBox) scene.lookup("#allTasks");
