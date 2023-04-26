@@ -1,23 +1,5 @@
 @import url("fonts.css");
 
-
-.navItem, .navItem:hover {
-    -fx-font-family: 'Merriweather Light';
-    -fx-font-size: 24px;
-    -fx-border-color: transparent;
-    -fx-underline: false;
-}
-
-.navItem:hover, .navItem:pressed {
-    -fx-text-fill: #E63946;
-}
-
-#sideBar {
-    -fx-border-width: 0 1 0 0;
-    -fx-border-color: #457B9D;
-    -fx-background-insets: 0 0 0 -2;
-}
-
 .header {
     -fx-font-family: 'firaSemiBold';
     -fx-font-size: 50px;

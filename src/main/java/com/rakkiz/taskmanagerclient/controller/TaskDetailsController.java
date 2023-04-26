@@ -7,6 +7,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.SQLException;
 
 public class TaskDetailsController {
@@ -33,8 +34,7 @@ public class TaskDetailsController {
     }
 
     // show the taskDetails
-    public void setTaskDetails(Task task)
-    {
+    public void setTaskDetails(Task task) {
         this.task = task;
         title.setText(task.getName());
         description.setText(task.getDescription());
@@ -57,4 +57,13 @@ public class TaskDetailsController {
         saveData();
         stage.close();
     }
+
+    // Go to pomodoro
+    @FXML
+    private void onPomodoroClick() throws IOException {
+
+        // TODO: activate the onPomodoroClick in the MainController
+        stage.close();
+    }
+
 }

@@ -21,7 +21,7 @@
     -fx-background-radius: 50%;
     -fx-text-fill: black;
     -fx-font-size: 20px;
-    -fx-padding: 0px;
+    -fx-padding: 10px;
     -fx-graphic: url("../images/close.png");
 }
 
