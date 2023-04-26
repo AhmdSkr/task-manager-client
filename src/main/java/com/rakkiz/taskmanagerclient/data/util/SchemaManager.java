@@ -32,7 +32,10 @@ public class SchemaManager {
             %s  INT             NOT NULL    GENERATED ALWAYS AS IDENTITY    PRIMARY KEY,
             %s  VARCHAR(%d)     NOT NULL,
             %s  VARCHAR(%d),
-            %s  TIMESTAMP       NOT NULL    DEFAULT CURRENT_TIMESTAMP
+            %s  TIMESTAMP,
+            %s  INT             NOT NULL    DEFAULT %d,
+            %s  TIMESTAMP       NOT NULL    DEFAULT CURRENT_TIMESTAMP,
+            %s  TIMESTAMP       NOT NULL    DEFAULT CURRENT_TIMESTAMP   ON UPDATE CURRENT_TIMESTAMP
         )
         
         """;
@@ -45,7 +48,11 @@ public class SchemaManager {
                 Task.NAME_LEN_MAX,
                 TASK_DESC,
                 Task.DESC_LEN_MAX,
-                TASK_CREATED_AT
+                TASK_SCHEDULED_FOR,
+                TASK_DURATION,
+                Task.DEFAULT_DURATION,
+                TASK_CREATED_AT,
+                TASK_UPDATED_AT
         );
     }
 

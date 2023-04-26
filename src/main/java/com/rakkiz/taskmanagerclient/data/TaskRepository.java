@@ -38,6 +38,14 @@ public interface TaskRepository extends AutoCloseable {
      * @throws Exception if right for reading on database not granted
      */
     List<Task> getByCreationInterval(Instant start, Integer durationAfter) throws Exception;
+    /**
+     * retrieves a list of Task models from database, where models' Scheduled date belonging to supplied interval
+     * @param start start of interval
+     * @param durationAfter length of interval
+     * @return list of Tasks
+     * @throws Exception if right for reading on database not granted
+     */
+    List<Task> getByScheduledForInterval(Instant start, Integer durationAfter) throws Exception;
 
     /**
      * updates Task model record in database
