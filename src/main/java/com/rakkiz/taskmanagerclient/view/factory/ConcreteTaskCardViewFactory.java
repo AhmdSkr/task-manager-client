@@ -18,7 +18,7 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
     private static final String NULL_TASK_ID_EXCEPTION_MESSAGE = "Task Model's ID must not be null";
 
     private static final String FXML_PATH = "fxml/task-card.fxml";
-
+    private final FXMLLoader loader;
 
     /**
      * Retrieves FXML resource corresponding to TaskCardView.
@@ -27,6 +27,10 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
      */
     private static URL getFXMLResource() {
         return TaskManagerApplication.class.getResource(FXML_PATH);
+    }
+
+    public ConcreteTaskCardViewFactory() {
+        loader = new FXMLLoader(getFXMLResource());
     }
 
     /**
@@ -39,7 +43,9 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
     public Node create(Task task) throws Exception {
         if (task == null) throw new NullPointerException(NULL_TASK_EXCEPTION_MESSAGE);
         if (task.getTaskId() == null) throw new IllegalArgumentException(NULL_TASK_ID_EXCEPTION_MESSAGE);
-        FXMLLoader loader = new FXMLLoader(getFXMLResource());
+
+        loader.setRoot(null);
+        loader.setController(null);
         Node card = loader.load();
         TaskCardController cardController = loader.getController();
         cardController.setTaskModel(task);
