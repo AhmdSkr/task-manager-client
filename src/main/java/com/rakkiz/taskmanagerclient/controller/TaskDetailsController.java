@@ -3,13 +3,17 @@ package com.rakkiz.taskmanagerclient.controller;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
+import java.net.URL;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
-public class TaskDetailsController {
+public class TaskDetailsController implements Initializable {
     private Task task;
     private Stage stage;
     @FXML
@@ -38,7 +42,6 @@ public class TaskDetailsController {
         this.task = task;
         title.setText(task.getName());
         description.setText(task.getDescription());
-        System.out.println("setTaskDetails Complete");
     }
 
     // save changed data to model
@@ -56,5 +59,19 @@ public class TaskDetailsController {
     private void goBack() throws SQLException {
         saveData();
         stage.close();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        title.setTextFormatter(
+                new TextFormatter<>(
+                        change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change
+                )
+        );
+        description.setTextFormatter(
+                new TextFormatter<>(
+                        change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change
+                )
+        );
     }
 }
