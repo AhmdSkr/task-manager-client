@@ -10,6 +10,7 @@ import javafx.scene.control.TextFormatter;
 import javafx.stage.Stage;
 
 import java.net.URL;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -37,11 +38,11 @@ public class TaskDetailsController implements Initializable {
     }
 
     // show the taskDetails
-    public void setTaskDetails(Task task)
-    {
+    public void setTaskDetails(Task task) {
         this.task = task;
         title.setText(task.getName());
         description.setText(task.getDescription());
+        System.out.println("setTaskDetails Complete");
     }
 
     // save changed data to model
@@ -60,6 +61,15 @@ public class TaskDetailsController implements Initializable {
         saveData();
         stage.close();
     }
+
+    // Go to pomodoro
+    @FXML
+    private void onPomodoroClick() throws IOException {
+
+        // TODO: activate the onPomodoroClick in the MainController
+        stage.close();
+    }
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
