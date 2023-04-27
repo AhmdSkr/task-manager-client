@@ -129,10 +129,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
-                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        scheduledTime,
                         rs.getInt(SchemaManager.TASK_DURATION),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        scheduledTime
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
@@ -174,10 +174,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
-                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
@@ -197,10 +197,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
-                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
