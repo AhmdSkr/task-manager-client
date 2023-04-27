@@ -3,10 +3,8 @@ package com.rakkiz.taskmanagerclient.controller;
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
@@ -63,9 +61,9 @@ public class TaskCardController {
         Scene popupScene = new Scene(popupContent);
 
         // set stage popup stage
-        TaskDetailsController controller = fxmlLoader.getController();
-        controller.setStage(popupStage);
-        controller.setTaskDetails(this.model);
+        TaskDetailsController taskDetailsController = fxmlLoader.getController();
+        taskDetailsController.setStage(popupStage);
+        taskDetailsController.setTaskDetails(this.model);
 
         // put stage position on screen
         popupStage.setX(300);
@@ -78,11 +76,15 @@ public class TaskCardController {
         BoxBlur blur = new BoxBlur(10, 10, 3);
         Parent parentRoot = task.getScene().getRoot();
         parentRoot.setEffect(blur);
-
         popupStage.setOnHidden(event -> {
             parentRoot.setEffect(null);
             this.setDetails();
         });
+
+        // set the anchorPane from the scaffold
+        AnchorPane anchorPane = (AnchorPane) parentRoot.lookup("#content");
+        taskDetailsController.setAnchorPane(anchorPane);
+
         // show the popup
         popupStage.showAndWait();
     }

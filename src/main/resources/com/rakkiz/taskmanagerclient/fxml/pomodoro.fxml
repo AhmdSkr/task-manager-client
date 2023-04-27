@@ -7,32 +7,25 @@
 
 <HBox alignment="CENTER" stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.PomodoroController">
    <VBox alignment="CENTER" spacing="50.0" HBox.hgrow="ALWAYS">
-      <children>
+      <HBox alignment="CENTER">
+         <fx:include source="pomodoroTimer.fxml" />
+      </HBox>
+      <VBox prefHeight="200.0" prefWidth="300.0">
          <HBox alignment="CENTER">
-            <children>
-                 <fx:include source="pomodoroTimer.fxml" />
-            </children>
+            <Label fx:id="title" text="Title">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
          </HBox>
-         <VBox prefHeight="200.0" prefWidth="300.0">
-            <children>
-               <HBox alignment="CENTER">
-                  <children>
-                     <Label text="Title">
-                        <font>
-                           <Font name="System Bold" size="36.0" />
-                        </font>
-                     </Label>
-                  </children>
-               </HBox>
-               <Label text="Description some stuff and this is idk what the " wrapText="true">
-                  <font>
-                     <Font name="System Italic" size="18.0" />
-                  </font>
-                  <VBox.margin>
-                     <Insets left="70.0" right="70.0" />
-                  </VBox.margin></Label>
-            </children>
-         </VBox>
-      </children>
+         <Label fx:id="description" text="Description some stuff and this is idk what the " wrapText="true">
+            <font>
+               <Font name="System Italic" size="18.0" />
+            </font>
+            <VBox.margin>
+               <Insets left="70.0" right="70.0" />
+            </VBox.margin>
+         </Label>
+      </VBox>
    </VBox>
 </HBox>

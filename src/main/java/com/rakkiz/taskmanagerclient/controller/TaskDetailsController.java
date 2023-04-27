@@ -1,16 +1,21 @@
 package com.rakkiz.taskmanagerclient.controller;
 
+import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-import java.net.URL;
 import java.io.IOException;
+import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -63,25 +68,35 @@ public class TaskDetailsController implements Initializable {
     }
 
     // Go to pomodoro
-    @FXML
-    private void onPomodoroClick() throws IOException {
+    private AnchorPane content;
 
-        // TODO: activate the onPomodoroClick in the MainController
+    public void setAnchorPane(AnchorPane anchorPane) {
+        this.content = anchorPane;
+    }
+
+    @FXML
+    private void onPomodoroClick() throws IOException, SQLException {
+        this.changeToPomodoro();
         stage.close();
     }
 
+    public void changeToPomodoro() throws IOException, SQLException {
+        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/pomodoro.fxml"));
+        Node root = fxmlLoader.load();
+        PomodoroController pomodoroController = fxmlLoader.getController();
+        saveData();
+        pomodoroController.setTitle(task.getName());
+        pomodoroController.setDescription(task.getDescription());
+        Stage stage = (Stage) content.getScene().getWindow();
+        ObservableList<Node> list = content.getChildren();
+        list.remove(0);
+        list.add(0, root);
+        stage.show();
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        title.setTextFormatter(
-                new TextFormatter<>(
-                        change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change
-                )
-        );
-        description.setTextFormatter(
-                new TextFormatter<>(
-                        change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change
-                )
-        );
+        title.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change));
+        description.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change));
     }
 }

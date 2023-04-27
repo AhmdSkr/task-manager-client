@@ -1,4 +1,5 @@
 package com.rakkiz.taskmanagerclient.data.model;
+
 import java.time.Instant;
 import java.util.Objects;
 
@@ -18,7 +19,7 @@ public class Task {
     );
 
     public static final String DEFAULT_NAME = "Untitled";
-    public static final String DEFAULT_DESCRIPTION = "";
+    public static final String DEFAULT_DESCRIPTION = "Write a description";
     private static final String ABOVE_MAX_DURATION_EXCEPTION_MESSAGE = String.format(
             "Given duration is greater than DURATION MAX = (%d)",
             Task.DURATION_MAX
@@ -150,6 +151,7 @@ public class Task {
 
     /**
      * sets the name of a specific task
+     *
      * @param name task's new name
      */
     public void setName(String name) {
@@ -197,16 +199,17 @@ public class Task {
      */
     @Override
     public boolean equals(Object obj) {
-        if(obj instanceof Task t) {
+        if (obj instanceof Task t) {
             return t.getTaskId()
                     .equals(this.getTaskId());
         }
         return false;
     }
+
     @Override
     public int hashCode() {
         Integer thisID = getTaskId();
-        if(thisID == null) return -1;
+        if (thisID == null) return -1;
         return Objects.hash(thisID);
     }
 }
