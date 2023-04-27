@@ -1,14 +1,9 @@
 @import "fonts.css";
 
 .backButton {
-    /*-fx-background-image: url("../images/back-arrow.png");*/
-    /*-fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center center;*/
     -fx-background-color: transparent;
     -fx-background-radius: 50%;
     -fx-text-fill: black;
-    /*-fx-font-size: 20px;*/
     -fx-padding: 0px;
     -fx-graphic: url("../images/back-arrow.png");
 }

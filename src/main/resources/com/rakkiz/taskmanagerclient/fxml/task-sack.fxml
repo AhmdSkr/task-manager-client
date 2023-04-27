@@ -28,17 +28,9 @@
 
               <!-- Unscheduled Tasks View -->
               <VBox fx:id="unVBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
-                  <!--                    <VBox prefHeight="200.0" prefWidth="100.0" spacing="30.0">-->
-                  <!--                        <children>-->
-                  <!--                            <fx:include source="task-card.fxml" />-->
-                  <!--                            <fx:include source="task-card.fxml" />-->
-                  <!--                            <fx:include source="task-card.fxml" />-->
-                  <!--                        </children>-->
-                  <!--                    </VBox>-->
-                  <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0" style="-fx-border-color: transparent; -fx-background: null;">
+                  <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0" style="-fx-background-color: transparent;">
                       <content>
                           <VBox fx:id="allTasks" maxWidth="542.0" prefWidth="542.0" spacing="10">
-
                     </VBox>
                       </content>
                       <padding>
@@ -48,7 +40,7 @@
               </VBox>
 
               <!-- Schedule Tasks View -->
-              <VBox fx:id="sVBox" alignment="CENTER" layoutX="962.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" AnchorPane.leftAnchor="962.0" AnchorPane.topAnchor="253.0">
+              <VBox fx:id="sVBox" alignment="CENTER" layoutX="962.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #ECF2F5;" AnchorPane.leftAnchor="962.0" AnchorPane.topAnchor="253.0">
                   <Label stylesheets="@../css/style.css" text="Schedule">
                       <font>
                           <Font name="System Bold Italic" size="30.0" />
@@ -57,16 +49,14 @@
                           <Insets top="10.0" />
                       </VBox.margin>
                   </Label>
-                  <ScrollPane fitToWidth="true" minWidth="50.0" prefHeight="450.0" style="-fx-border-color: transparent; -fx-background: null; -fx-background-color: #FDEBED;">
+                  <ScrollPane fitToWidth="true" minWidth="50.0" prefHeight="450.0" style="-fx-background-color: #ECF2F5;">
                       <content>
-                          <VBox maxWidth="542.0" prefWidth="542.0" spacing="10">
-
+                          <VBox maxWidth="542.0" prefHeight="0.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #ECF2F5;">
                     </VBox>
                       </content>
                       <padding>
                           <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
                       </padding>
-
                   </ScrollPane>
               </VBox>
           </HBox>

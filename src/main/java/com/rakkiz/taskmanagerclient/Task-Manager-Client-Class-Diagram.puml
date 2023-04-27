@@ -32,17 +32,21 @@ package data {
         }
         class SchemaManager {
             + {static} TASK_TABLE : String
+            + {static} TASK_UPDATE_TRIGGER : String
             + {static} TASK_ID : String
             + {static} TASK_NAME : String
             + {static} TASK_DESC : String
+            + {static} TASK_SCHEDULE_FOR : String
+            + {static} TASK_DURATION : String
+            + {static} TASK_UPDATED_AT : String
             + {static} TASK_CREATED_AT : String
 
             - connection : java.sql.Connection
 
             + SchemaManager(connection : java.sql.Connection)
 
-            + getCreationDefinition() : String
-            + getDestructionDefinition() : String
+            + getCreationDefinition() : String[]
+            + getDestructionDefinition() : String[]
             + isEstablished() : boolean
             + establishSchema()
             + drop()

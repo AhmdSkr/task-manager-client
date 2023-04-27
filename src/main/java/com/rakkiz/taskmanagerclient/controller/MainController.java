@@ -26,13 +26,4 @@ public class MainController {
         list.add(0, fxmlLoader.load());
         stage.show();
     }
-
-    public void onPomodoroClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/pomodoro.fxml"));
-        Stage stage = (Stage) content.getScene().getWindow();
-        ObservableList<Node> list = content.getChildren();
-        list.remove(0);
-        list.add(0, fxmlLoader.load());
-        stage.show();
-    }
 }
