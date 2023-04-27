@@ -3,6 +3,7 @@ package com.rakkiz.taskmanagerclient.controller;
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
+import com.rakkiz.taskmanagerclient.view.factory.Filter.ConcreteFilterViewFactory;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,6 +13,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -26,9 +28,27 @@ public class TaskDetailsController implements Initializable {
     private TextField title;
     @FXML
     private TextArea description;
+    @FXML
+    private HBox filters;
+
+    private final ConcreteFilterViewFactory filterViewFactory;
 
     public TaskDetailsController() {
         this.task = new Task();
+        filterViewFactory = new ConcreteFilterViewFactory();
+    }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        title.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change));
+        description.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change));
+
+        // Add the necessary filters
+        try {
+            filterViewFactory.addFilters(filters);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public void setStage(Stage stage) {
@@ -92,11 +112,5 @@ public class TaskDetailsController implements Initializable {
         list.remove(0);
         list.add(0, root);
         stage.show();
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        title.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change));
-        description.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change));
     }
 }

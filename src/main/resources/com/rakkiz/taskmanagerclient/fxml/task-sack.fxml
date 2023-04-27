@@ -15,9 +15,10 @@
     <!-- Filters -->
     <HBox layoutX="329.0" layoutY="190.0" prefWidth="200.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
         <children>
-            <fx:include source="filter.fxml" />
-            <fx:include source="filter.fxml" />
-            <fx:include source="filter.fxml" />
+         <HBox fx:id="filters" spacing="15.0">
+            <children>
+            </children>
+         </HBox>
             <fx:include source="addTask.fxml" />
         </children>
     </HBox>

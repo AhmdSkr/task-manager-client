@@ -1,4 +1,4 @@
-package com.rakkiz.taskmanagerclient.view.factory;
+package com.rakkiz.taskmanagerclient.view.factory.TaskCard;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.controller.TaskCardController;

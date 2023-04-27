@@ -9,4 +9,6 @@ module com.rakkiz.taskmanagerclient {
     exports com.rakkiz.taskmanagerclient.data.model;
     exports com.rakkiz.taskmanagerclient.controller;
     opens com.rakkiz.taskmanagerclient.controller to javafx.fxml;
+    exports com.rakkiz.taskmanagerclient.view.strategy;
+    opens com.rakkiz.taskmanagerclient.view.strategy to javafx.fxml;
 }
