@@ -96,7 +96,6 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
     }
 
     public void create(Task task) throws SQLException {
-
         this.insertStatement.setString(1, task.getName());
         this.insertStatement.setString(2, task.getDescription());
         Instant scheduledTime = task.getScheduledTime();
@@ -139,7 +138,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         return tasks;
     }
 
-    public synchronized Task getByTaskId(Integer taskId) throws SQLException {
+    public Task getByTaskId(Integer taskId) throws SQLException {
         this.readByIdStatement.setInt(1, taskId);
         try (ResultSet rs = readByIdStatement.executeQuery()) {
             if (rs.next()) {
@@ -162,7 +161,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         return null;
     }
 
-    public synchronized List<Task> getByCreationInterval(Instant start, Integer durationAfter) throws SQLException {
+    public List<Task> getByCreationInterval(Instant start, Integer durationAfter) throws SQLException {
         List<Task> tasks = new ArrayList<>();
         Timestamp from = Timestamp.from(start);
         Timestamp to = Timestamp.from(start.plusSeconds(durationAfter));
@@ -185,7 +184,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         return tasks;
     }
 
-    public synchronized List<Task> getByScheduledForInterval(Instant start, Integer durationAfter) throws SQLException {
+    public List<Task> getByScheduledForInterval(Instant start, Integer durationAfter) throws SQLException {
         List<Task> tasks = new ArrayList<>();
         Timestamp from = Timestamp.from(start);
         Timestamp to = Timestamp.from(start.plusSeconds(durationAfter));

@@ -22,11 +22,6 @@ public class TaskRepositoryTest extends TestCase {
         repository = DerbyTaskRepository.getInstance();
     }
 
-    @AfterAll
-    public void testClose() throws Exception {
-        repository.close();
-    }
-
     @Test
     public void testIDAssignedOnCreation() throws Exception {
         Task t = new Task();
