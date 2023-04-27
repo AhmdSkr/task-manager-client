@@ -22,6 +22,11 @@ public class TaskRepositoryTest extends TestCase {
         repository = DerbyTaskRepository.getInstance();
     }
 
+    @AfterAll
+    public void testClose() throws Exception {
+        repository.close();
+    }
+
     @Test
     public void testIDAssignedOnCreation() throws Exception {
         Task t = new Task();
@@ -35,15 +40,49 @@ public class TaskRepositoryTest extends TestCase {
     @Test
     public void testAllNewlyCreatedTaskReadability() throws Exception {
 
+        Instant sampleInstant = Instant.now();
         Task[] myTasks = new Task[]{
-                new Task(null, "my", "newTask", Instant.now()),
-                new Task(null, "mine", "Task", Instant.now()),
-                new Task(null, "mine", "newTask", Instant.now()),
-                new Task(null, "my", "Task", Instant.now())
+                new Task(
+                        null,
+                        "my",
+                        "newTask",
+                        Instant.now(),
+                        1,
+                        sampleInstant,
+                        sampleInstant
+                ),
+                new Task(null,
+                        "mine",
+                        "Task",
+                        Instant.now(),
+                        1,
+                        sampleInstant,
+                        sampleInstant
+                ),
+                new Task(null,
+                        "mine",
+                        "newTask",
+                        Instant.now(),
+                        1,
+                        sampleInstant,
+                        sampleInstant
+                ),
+                new Task(null,
+                        "my",
+                        "Task",
+                        Instant.now(),
+                        1,
+                        sampleInstant,
+                        sampleInstant
+                )
         };
         for (Task t : myTasks) {
             repository.create(t);
         }
+
+        repository.close();
+        repository = DerbyTaskRepository.getInstance();
+
         List<Task> list = repository.getAllTasks();
         for (Task t : myTasks) {
             int index = list.indexOf(t);
@@ -53,7 +92,11 @@ public class TaskRepositoryTest extends TestCase {
             assertEquals("ID should not change on creation or read", tRead.getTaskId(), t.getTaskId());
             assertEquals("Name should not change on creation or read", tRead.getName(), t.getName());
             assertEquals("Description should not change on creation or read", tRead.getDescription(), t.getDescription());
+            assertEquals("Schedule date should not change on creation or read", tRead.getScheduledTime(), t.getScheduledTime());
+            assertEquals("Duration should not change on creation or read", tRead.getDuration(), t.getDuration());
             assertEquals("Creation date should not change on creation or read", tRead.getCreationTime(), t.getCreationTime());
+            assertEquals("Update date should not change on creation or read", tRead.getUpdateTime(), t.getUpdateTime());
+
         }
         for (Task t : myTasks) {
             repository.delete(t);
@@ -78,7 +121,10 @@ public class TaskRepositoryTest extends TestCase {
         assertEquals("ID should not change on creation", tRead.getTaskId(), t.getTaskId());
         assertEquals("Name should not change on creation", tRead.getName(), t.getName());
         assertEquals("Description should not change on creation", tRead.getDescription(), t.getDescription());
-        assertEquals("Creation date should not change on creation", tRead.getCreationTime(), t.getCreationTime());
+        assertEquals("Schedule date should not change on creation or read", tRead.getScheduledTime(), t.getScheduledTime());
+        assertEquals("Duration should not change on creation or read", tRead.getDuration(), t.getDuration());
+        assertEquals("Creation date should not change on creation or read", tRead.getCreationTime(), t.getCreationTime());
+        assertEquals("Update date should not change on creation or read", tRead.getUpdateTime(), t.getUpdateTime());
 
         //  Reverting changes
         repository.delete(t);
@@ -90,6 +136,7 @@ public class TaskRepositoryTest extends TestCase {
         int ID;
         String targetName = "This is my name";
         String targetDescription = "This is the new description";
+
         {
             Task t = new Task();
             repository.create(t);
