@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
@@ -11,6 +12,9 @@
         <graphic>
             <ImageView fitHeight="23.0" fitWidth="23.0">
                 <Image url="@../images/close.png" />
+            <cursor>
+               <Cursor fx:constant="HAND" />
+            </cursor>
             </ImageView>
         </graphic>
     </Button>

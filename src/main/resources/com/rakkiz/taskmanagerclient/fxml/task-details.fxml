@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskDetailsController">
+<AnchorPane prefHeight="550.0" prefWidth="1034.0" style="-fx-background-radius: 30px; -fx-border-radius: 30px; -fx-background-color: transparent;" stylesheets="@../css/task-details.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskDetailsController">
     <children>
 
         <!-- Task Title -->
@@ -21,6 +22,9 @@
             <graphic>
                 <ImageView fitHeight="18.0" fitWidth="18.0">
                     <Image url="@../images/back-arrow.png" />
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
                 </ImageView>
             </graphic>
         </Button>
@@ -51,6 +55,9 @@
           <graphic>
               <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
                   <Image url="@../images/pomodoro.png" />
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
               </ImageView>
           </graphic>
       </Button>
