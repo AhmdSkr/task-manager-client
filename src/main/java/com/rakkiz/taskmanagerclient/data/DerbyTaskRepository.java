@@ -96,7 +96,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
     public void create(Task task) throws SQLException {
         this.insertStatement.setString(1, task.getName());
         this.insertStatement.setString(2, task.getDescription());
-        this.insertStatement.setTimestamp(3, Timestamp.from(task.getScheduledTime());
+        this.insertStatement.setTimestamp(3, Timestamp.from(task.getScheduledTime()));
         this.insertStatement.setInt(4, task.getDuration());
         this.insertStatement.setTimestamp(5, Timestamp.from(task.getCreationTime()));
         this.insertStatement.setTimestamp(6, Timestamp.from(task.getUpdateTime()));
@@ -116,10 +116,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
                         rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
@@ -134,10 +134,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
                         rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 );
             }
         }
@@ -156,10 +156,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
                         rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
@@ -178,10 +178,10 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
                         rs.getInt(SchemaManager.TASK_ID),
                         rs.getString(SchemaManager.TASK_NAME),
                         rs.getString(SchemaManager.TASK_DESC),
+                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant(),
                         rs.getInt(SchemaManager.TASK_DURATION),
                         rs.getTimestamp(SchemaManager.TASK_CREATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant(),
-                        rs.getTimestamp(SchemaManager.TASK_SCHEDULED_FOR).toInstant()
+                        rs.getTimestamp(SchemaManager.TASK_UPDATED_AT).toInstant()
                 ));
             }
         }
@@ -196,7 +196,7 @@ public class DerbyTaskRepository implements TaskRepository, AutoCloseable{
         this.updateStatement.setString(1, task.getName());
         this.updateStatement.setString(2, task.getDescription());
         this.updateStatement.setInt(3, task.getTaskId());
-        this.updateStatement.setTimestamp(4,Timestamp.from(task.getScheduledTime());
+        this.updateStatement.setTimestamp(4,Timestamp.from(task.getScheduledTime()));
         this.updateStatement.setInt(5,task.getDuration());
         if (updateStatement.executeUpdate() == 0) {
             throw new SQLException(UPDATE_FAILURE_EXCEPTION_MESSAGE);

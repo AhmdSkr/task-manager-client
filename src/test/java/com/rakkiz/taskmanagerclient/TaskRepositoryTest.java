@@ -36,10 +36,11 @@ public class TaskRepositoryTest extends TestCase {
     public void testAllNewlyCreatedTaskReadability() throws Exception {
 
         Task[] myTasks = new Task[]{
-                new Task(null, "my", "newTask", Instant.now()),
-                new Task(null, "mine", "Task", Instant.now()),
-                new Task(null, "mine", "newTask", Instant.now()),
-                new Task(null, "my", "Task", Instant.now())
+                new Task(null, "my", "newTask", Instant.now(),4,Instant.now(),null),
+                new Task(null, "mine", "Task", Instant.now(),5,Instant.now(),null),
+                new Task(null, "mine", "newTask", Instant.now(),8,Instant.now(),Instant.now()),
+                new Task(null, "my", "Task", Instant.now(),9,Instant.now(),null),
+                new Task()
         };
         for (Task t : myTasks) {
             repository.create(t);

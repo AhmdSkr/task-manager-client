@@ -14,6 +14,9 @@ public class SchemaManager {
     public static String TASK_NAME = "TASK_NAME";
     public static String TASK_DESC = "TASK_DESC";
     public static String TASK_CREATED_AT = "CREATED_AT";
+    public static String TASK_SCHEDULED_FOR = "SCHEDULED_FOR";
+    public static String TASK_DURATION = "DURATION";
+    public static String TASK_UPDATED_AT = "UPDATED_AT";
 
     private final Connection connection;
 

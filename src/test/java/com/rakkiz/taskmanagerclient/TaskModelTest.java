@@ -13,11 +13,12 @@ public class TaskModelTest extends TestCase {
     public static String name = "thisName";
     public static String description = "thisDescription";
     public static Instant instant = Instant.now();
+    public static Integer duration = 5000;
     public Task task;
 
     @BeforeEach
     public void initTask() {
-        task = new Task(id, name, description, instant);
+        task = new Task(id, name, description, instant,duration,instant,null);
     }
 
     @Test
@@ -57,6 +58,12 @@ public class TaskModelTest extends TestCase {
     public void testGetCreationTime() {
         assertEquals(instant, task.getCreationTime());
     }
+    @Test
+    public void testGetScheduledTime(){assertEquals(instant,task.getScheduledTime());}
+    @Test
+    public void testGetDurationTime(){assertEquals(duration,task.getDuration());}
+    @Test
+    public void testGetUpdatedTime(){assertEquals(null,task.getUpdateTime());}
 
     @Test
     public void testSetID() {
@@ -78,5 +85,17 @@ public class TaskModelTest extends TestCase {
         task.setDescription(description);
         assertEquals(task.getDescription(),description);
     }
-
+    @Test
+    public void testSetScheduleTime(){
+        String dateString = "2023-04-27T13:45:00Z";
+        Instant instant = Instant.parse(dateString);
+        task.setScheduleTime(instant);
+        assertEquals(task.getScheduledTime(),instant);
+    }
+    @Test
+    public void testSetDuration(){
+        Integer duration = 2;
+        task.setDuration(duration);
+        assertEquals(task.getDuration(),duration);
+    }
 }
