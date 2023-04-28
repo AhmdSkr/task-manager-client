@@ -79,6 +79,15 @@ public class Task {
     }
 
     /**
+     * Checks if task is scheduled
+     *
+     * @return true if task is scheduled, otherwise false
+     */
+    public boolean isScheduled() {
+        return scheduledFor == null;
+    }
+
+    /**
      * @return task's current ID
      */
     public Integer getTaskId() {
