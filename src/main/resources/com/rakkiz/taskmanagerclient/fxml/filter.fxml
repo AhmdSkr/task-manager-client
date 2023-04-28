@@ -12,12 +12,5 @@
     <ImageView fx:id="image" fitHeight="23.0" fitWidth="23.0" pickOnBounds="true" preserveRatio="true">
         <Image url="@../images/filters/date/calendar.png" />
     </ImageView>
-    <Label fx:id="label" stylesheets="@../css/filter.css" text="Due" />
-    <VBox alignment="CENTER_RIGHT" HBox.hgrow="ALWAYS">
-        <ImageView fx:id="arrow" fitHeight="20.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../images/filters/arrow/arrow.png" />
-            </image>
-        </ImageView>
-    </VBox>
+   <ChoiceBox fx:id="choiceBox" prefWidth="150.0" style="-fx-background-color: transparent; -fx-text-fill: #C7C7C7;" />
 </HBox>
