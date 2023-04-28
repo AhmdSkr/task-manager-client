@@ -6,61 +6,54 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.TaskSackController">
-        <Text fill="#201f1a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Tasks" AnchorPane.topAnchor="0.0">
-            <font>
-                <Font name="System Bold" size="38.0" />
-            </font>
-        </Text>
+    <Text fill="#201f1a" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="header" text="Tasks" AnchorPane.topAnchor="0.0">
+        <font>
+            <Font name="System Bold" size="38.0" />
+        </font>
+    </Text>
 
     <!-- Filters -->
     <HBox layoutX="329.0" layoutY="190.0" prefWidth="200.0" spacing="15.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="70.0">
         <children>
-         <HBox fx:id="filters" spacing="15.0">
-            <children>
-            </children>
-         </HBox>
+            <HBox fx:id="filters" spacing="15.0">
+                <children>
+                </children>
+            </HBox>
             <fx:include source="addTask.fxml" />
         </children>
     </HBox>
-   <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
-      <children>
-          <!-- Task Collection -->
-          <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
+    <VBox alignment="CENTER_LEFT" fillWidth="false" prefHeight="200.0" prefWidth="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="120.0">
+        <children>
+            <!-- Task Collection -->
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="40.0">
 
-              <!-- Unscheduled Tasks View -->
-              <VBox fx:id="unVBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
-                  <ScrollPane fitToWidth="true" minWidth="100.0" prefHeight="450.0" style="-fx-background-color: transparent;">
-                      <content>
-                          <VBox fx:id="allTasks" maxWidth="542.0" prefWidth="542.0" spacing="10">
-                    </VBox>
-                      </content>
-                      <padding>
-                          <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
-                      </padding>
-                  </ScrollPane>
-              </VBox>
+                <!-- Unscheduled Tasks View -->
+                <VBox fx:id="unVBox" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0">
+                    <ScrollPane fitToWidth="true" minWidth="50.0" prefHeight="500.0" style="-fx-background-color: #ECF2F5;">
+                        <GridPane fx:id="allTasks" hgap="20.0" vgap="20.0">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" />
+                                <ColumnConstraints hgrow="ALWAYS" minWidth="30.0" />
+                            </columnConstraints>
+                            <rowConstraints>
+                                <RowConstraints minHeight="30.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="30.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="30.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="30.0" vgrow="ALWAYS" />
+                                <RowConstraints minHeight="30.0" vgrow="ALWAYS" />
+                            </rowConstraints>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                        </GridPane>
+                    </ScrollPane>
+                </VBox>
 
-              <!-- Schedule Tasks View -->
-              <VBox fx:id="sVBox" alignment="CENTER" layoutX="962.0" layoutY="253.0" minHeight="-Infinity" minWidth="-Infinity" spacing="10.0" style="-fx-background-color: #ECF2F5;" AnchorPane.leftAnchor="962.0" AnchorPane.topAnchor="253.0">
-                  <Label stylesheets="@../css/style.css" text="Schedule">
-                      <font>
-                          <Font name="System Bold Italic" size="30.0" />
-                      </font>
-                      <VBox.margin>
-                          <Insets top="10.0" />
-                      </VBox.margin>
-                  </Label>
-                  <ScrollPane fitToWidth="true" minWidth="50.0" prefHeight="450.0" style="-fx-background-color: #ECF2F5;">
-                      <content>
-                          <VBox maxWidth="542.0" prefHeight="0.0" prefWidth="542.0" spacing="10" style="-fx-background-color: #ECF2F5;">
-                    </VBox>
-                      </content>
-                      <padding>
-                          <Insets bottom="12.0" left="15.0" right="15.0" top="12.0" />
-                      </padding>
-                  </ScrollPane>
-              </VBox>
-          </HBox>
-      </children>
-   </VBox>
+            </HBox>
+        </children>
+    </VBox>
 </AnchorPane>

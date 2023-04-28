@@ -3,12 +3,12 @@ package com.rakkiz.taskmanagerclient.controller;
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.factory.Filter.ConcreteFilterViewFactory;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
@@ -19,6 +19,8 @@ import javafx.stage.Stage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
 import java.util.ResourceBundle;
 
 public class TaskDetailsController implements Initializable {
@@ -31,11 +33,9 @@ public class TaskDetailsController implements Initializable {
     @FXML
     private HBox filters;
 
-    private final ConcreteFilterViewFactory filterViewFactory;
 
     public TaskDetailsController() {
         this.task = new Task();
-        filterViewFactory = new ConcreteFilterViewFactory();
     }
 
     @Override
@@ -43,12 +43,26 @@ public class TaskDetailsController implements Initializable {
         title.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change));
         description.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change));
 
-        // Add the necessary filters
         try {
-            filterViewFactory.addFilters(filters);
+            addFilter("Duration");
+            addFilter("Type");
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    private void addFilter(String type) throws IOException {
+        FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/detail-filter.fxml"));
+        Node node = loader.load();
+        DetailFilterController detailFilterController = loader.getController();
+        if (type == "Duration")
+        {
+            // TODO: check why the task.getDuration() is only giving 1
+            System.out.println("task.getDuration(): "+task.getDuration());
+            detailFilterController.durationDetail(task.getDuration());
+        }
+        else if (type == "Type") detailFilterController.typeDetail(task.getScheduledTime());
+        filters.getChildren().add(node);
     }
 
     public void setStage(Stage stage) {
@@ -74,6 +88,25 @@ public class TaskDetailsController implements Initializable {
     private void saveData() throws SQLException {
         task.setName(title.getText());
         task.setDescription(description.getText());
+
+        // TODO
+        ObservableList<Node> nodes = filters.getChildren();
+        for (Node node : nodes) {
+            HBox hbox = (HBox) node;
+            Node lastChild = hbox.getChildren().get(hbox.getChildren().size() - 1);
+            if (lastChild instanceof TextField) {
+                int duration = Integer.parseInt(((TextField)lastChild).getText().toString());
+                System.out.println("THIS IS THE DURATION "+duration);
+                task.setDuration(duration);
+            } else if (lastChild instanceof DatePicker) {
+                Instant date = ((DatePicker) lastChild).getValue().atStartOfDay(ZoneId.systemDefault()).toInstant();
+                System.out.println("THIS IS THE SCHEDULED DATE "+date.toString());
+                task.setScheduleTime(date);
+            } else {
+                System.out.println("THIS IS UNSCHEDULED ");
+                task.setScheduleTime(null);
+            }
+        }
 
         DerbyTaskRepository taskrepo = DerbyTaskRepository.getInstance();
         taskrepo.update(this.task);

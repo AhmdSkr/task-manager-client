@@ -14,8 +14,8 @@ public class DateTaskFilter implements TaskFilter {
 
     @Override
     public boolean filter(Task task) {
-        Date date = Date.from(task.getScheduledTime());
-        return date.equals(this.filterDate);
+        // TODO
+        return false;
 
     }
 }

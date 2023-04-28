@@ -12,6 +12,7 @@ public class DurationTaskFilter implements TaskFilter {
 
     @Override
     public boolean filter(Task task) {
-        return task.getDuration().equals(this.duration);
+        // TODO
+        return false;
     }
 }

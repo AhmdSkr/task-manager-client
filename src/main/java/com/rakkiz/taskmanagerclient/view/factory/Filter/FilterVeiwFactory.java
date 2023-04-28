@@ -1,6 +1,5 @@
 package com.rakkiz.taskmanagerclient.view.factory.Filter;
 
-import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.scene.Node;
 
 import java.io.IOException;

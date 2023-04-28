@@ -9,7 +9,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.layout.HBox;
-import javafx.scene.shape.Box;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,13 +49,15 @@ public class ConcreteFilterViewFactory implements FilterVeiwFactory{
     }
 
     public void addFilters(HBox node) throws IOException {
-        Node filterRoot = create("Date");
-        node.getChildren().add(filterRoot);
 
-        filterRoot = create("Duration");
+        Node filterRoot = create("Duration");
         node.getChildren().add(filterRoot);
 
         filterRoot = create("Type");
+        node.getChildren().add(filterRoot);
+
+        filterRoot = create("Date");
+        filterRoot.setDisable(true);
         node.getChildren().add(filterRoot);
     }
 }

@@ -84,7 +84,7 @@ public class Task {
      * @return true if task is scheduled, otherwise false
      */
     public boolean isScheduled() {
-        return scheduledFor == null;
+        return scheduledFor != null;
     }
 
     /**

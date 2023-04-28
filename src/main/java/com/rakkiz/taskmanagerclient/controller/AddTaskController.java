@@ -5,9 +5,10 @@ import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -33,9 +34,22 @@ public class AddTaskController {
         controller.setTaskModel(task);
 
         Scene scene = anchorRoot.getScene();
-        VBox vbox = (VBox) scene.lookup("#allTasks");
-        vbox.getChildren().add(taskAnchor);
-
+        GridPane gridPane = (GridPane) scene.lookup("#allTasks");
+        int vboxSize = gridPane.getChildren().size();
+        if (vboxSize == 0) {
+            gridPane.add(taskAnchor, 0, 0);
+        } else {
+            Node lastNode = gridPane.getChildren().get(gridPane.getChildren().size() - 1);
+            int colIndex = gridPane.getColumnIndex(lastNode);
+            int rowIndex = gridPane.getRowIndex(lastNode);
+            int colCount = gridPane.getColumnCount();
+            colIndex++;
+            if (colIndex == colCount) {
+                rowIndex++;
+                colIndex = 0;
+            }
+            gridPane.add(taskAnchor, colIndex, rowIndex);
+        }
         // show the taskDetails of the card
         controller.goToDetails();
 
