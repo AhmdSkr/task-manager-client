@@ -2,7 +2,7 @@ package com.rakkiz.taskmanagerclient.controller;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.strategy.DateTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.date.DateTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.duration.DurationTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.TaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.type.TypeTaskFilter;

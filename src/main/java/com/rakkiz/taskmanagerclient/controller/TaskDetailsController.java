@@ -50,7 +50,7 @@ public class TaskDetailsController implements Initializable {
     }
 
     private void addFilter(String type) throws IOException {
-        FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/detail-filter.fxml"));
+        FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/details.fxml"));
         Node node = loader.load();
         DetailFilterController detailFilterController = loader.getController();
         if (type == "Duration") {
