@@ -34,17 +34,26 @@ public class PomodoroTimerController {
     Background backgroundGreen = new Background(backgroundFillGreen);
 
 
-    PomodoroTimerModel model;
+    PomodoroTimerModel model = new PomodoroTimerModel();
+    PomodoroController pomodoroController;
 
     String timeString;
 
+    public void setOriginalCycle(int duration){
+        //model.setOriginalCycleCount(duration);
+        model.setCycleCount(duration);
+    }
+
+    public void setPomodoroController(PomodoroController pomodoroController){
+        this.pomodoroController = pomodoroController;
+    }
+
     @FXML
     public void initialize() {
-        model = new PomodoroTimerModel();
+        //model = new PomodoroTimerModel();
         model.setWorkState();
         time.setText(model.getOriginalWorkTimeInSeconds());
         Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
-        Vbox.setBackground(backgroundRed);
         pomCycles.setText(""+model.getCycleCount());
 
         // Listener for workTimeSeconds
@@ -93,7 +102,6 @@ public class PomodoroTimerController {
         });
 
     }
-
 
 
     @FXML

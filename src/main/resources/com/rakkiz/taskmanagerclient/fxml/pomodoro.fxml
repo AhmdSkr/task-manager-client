@@ -5,11 +5,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox alignment="CENTER" stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.PomodoroController">
-   <VBox alignment="CENTER" spacing="50.0" HBox.hgrow="ALWAYS">
-      <HBox alignment="CENTER">
-         <fx:include source="pomodoroTimer.fxml" />
-      </HBox>
+<HBox alignment="CENTER" stylesheets="@../css/pomodoro-style.css, @../css/fonts.css" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.rakkiz.taskmanagerclient.controller.PomodoroController">
+   <VBox fx:id="content" alignment="CENTER" spacing="50.0" HBox.hgrow="ALWAYS">
+<!--      <HBox alignment="CENTER">-->
+<!--         <fx:include source="pomodoroTimer.fxml" />-->
+<!--      </HBox>-->
       <VBox prefHeight="200.0" prefWidth="300.0">
          <HBox alignment="CENTER">
             <Label fx:id="title" text="Title">

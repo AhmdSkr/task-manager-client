@@ -134,6 +134,7 @@ public class TaskDetailsController implements Initializable {
         saveData();
         pomodoroController.setTitle(task.getName());
         pomodoroController.setDescription(task.getDescription());
+        pomodoroController.addPomTimer(task.getDuration());
         Stage stage = (Stage) content.getScene().getWindow();
         ObservableList<Node> list = content.getChildren();
         list.remove(0);

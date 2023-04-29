@@ -14,8 +14,12 @@ public class PomodoroTimerModel{
     private Timeline breakTimer;
     private final int originalWorkTimeInSeconds = 1 * 10; // 25 minutes
     private final int originalBreakTimeInSeconds = 1 * 5; // 5 minutes
-    private int originalCycleCount = 2;
+    //private int originalCycleCount;
 
+
+//    public void setOriginalCycleCount(int cycles){
+//        originalCycleCount = cycles;
+//    }
 
 
     //TEST
@@ -27,7 +31,7 @@ public class PomodoroTimerModel{
 
 
 
-    private IntegerProperty cycleCount = new SimpleIntegerProperty(originalCycleCount);
+    private IntegerProperty cycleCount = new SimpleIntegerProperty();
 
 
 
@@ -101,6 +105,8 @@ public class PomodoroTimerModel{
     public int getCycleCount(){
         return cycleCount.get();
     }
+
+    public void setCycleCount(int cycle) {cycleCount.set(cycle);}
 
 
 
