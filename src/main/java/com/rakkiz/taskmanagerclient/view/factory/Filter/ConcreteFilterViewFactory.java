@@ -3,8 +3,10 @@ package com.rakkiz.taskmanagerclient.view.factory.Filter;
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.controller.FilterController;
 import com.rakkiz.taskmanagerclient.view.strategy.DateTaskFilter;
-import com.rakkiz.taskmanagerclient.view.strategy.DurationTaskFilter;
-import com.rakkiz.taskmanagerclient.view.strategy.TypeTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.DurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.ShortDurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.type.TypeTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.type.UnscheduledTypeTaskFilter;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
@@ -36,12 +38,12 @@ public class ConcreteFilterViewFactory implements FilterVeiwFactory{
             filterController.setImage(new Image(TaskManagerApplication.class.getResource("images/filters/date/calendar.png").toString()));
             filterController.addDateChoiceBox();
         } else if (type == "Duration") {
-            filterController.setTaskFilter(new DurationTaskFilter());
+            filterController.setTaskFilter(new ShortDurationTaskFilter());
             filterController.setImage(new Image(TaskManagerApplication.class.getResource("images/filters/duration/duration.png").toString()));
             filterController.addDurationChoiceBox();
         }
         else if(type == "Type"){
-            filterController.setTaskFilter(new TypeTaskFilter());
+            filterController.setTaskFilter(new UnscheduledTypeTaskFilter());
             filterController.setImage(new Image(TaskManagerApplication.class.getResource("images/filters/type/type.png").toString()));
             filterController.addTypeChoiceBox();
         }

@@ -11,4 +11,8 @@ module com.rakkiz.taskmanagerclient {
     opens com.rakkiz.taskmanagerclient.controller to javafx.fxml;
     exports com.rakkiz.taskmanagerclient.view.strategy;
     opens com.rakkiz.taskmanagerclient.view.strategy to javafx.fxml;
+    exports com.rakkiz.taskmanagerclient.view.strategy.duration;
+    opens com.rakkiz.taskmanagerclient.view.strategy.duration to javafx.fxml;
+    exports com.rakkiz.taskmanagerclient.view.strategy.type;
+    opens com.rakkiz.taskmanagerclient.view.strategy.type to javafx.fxml;
 }
