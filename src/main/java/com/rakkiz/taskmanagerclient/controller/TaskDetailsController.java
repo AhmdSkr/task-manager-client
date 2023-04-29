@@ -8,10 +8,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.stage.Stage;
@@ -33,6 +30,8 @@ public class TaskDetailsController implements Initializable {
     @FXML
     private HBox filters;
 
+    @FXML
+    private Button pomodoroButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -75,7 +74,8 @@ public class TaskDetailsController implements Initializable {
         this.task = task;
         title.setText(task.getName());
         description.setText(task.getDescription());
-        System.out.println("setTaskDetails Complete");
+        if(task.getDuration() == 0) pomodoroButton.setDisable(true);
+        else pomodoroButton.setDisable(false);
     }
 
     // save changed data to model
@@ -83,28 +83,23 @@ public class TaskDetailsController implements Initializable {
         task.setName(title.getText());
         task.setDescription(description.getText());
 
-        // TODO
         ObservableList<Node> nodes = filters.getChildren();
         for (Node node : nodes) {
             HBox hbox = (HBox) node;
             Node lastChild = hbox.getChildren().get(hbox.getChildren().size() - 1);
             if (lastChild instanceof TextField) {
                 int duration = Integer.parseInt(((TextField) lastChild).getText().toString());
-                System.out.println("THIS IS THE DURATION " + duration);
                 task.setDuration(duration);
             } else if (lastChild instanceof DatePicker) {
                 Instant date = ((DatePicker) lastChild).getValue().atStartOfDay(ZoneId.systemDefault()).toInstant();
-                System.out.println("THIS IS THE SCHEDULED DATE " + date.toString());
                 task.setScheduleTime(date);
             } else {
-                System.out.println("THIS IS UNSCHEDULED ");
                 task.setScheduleTime(null);
             }
         }
 
         DerbyTaskRepository taskrepo = DerbyTaskRepository.getInstance();
         taskrepo.update(this.task);
-        System.out.println("saveData Complete");
     }
 
     // Button for going back
@@ -134,6 +129,7 @@ public class TaskDetailsController implements Initializable {
         saveData();
         pomodoroController.setTitle(task.getName());
         pomodoroController.setDescription(task.getDescription());
+        pomodoroController.setTask(task);
         pomodoroController.addPomTimer(task.getDuration());
         Stage stage = (Stage) content.getScene().getWindow();
         ObservableList<Node> list = content.getChildren();

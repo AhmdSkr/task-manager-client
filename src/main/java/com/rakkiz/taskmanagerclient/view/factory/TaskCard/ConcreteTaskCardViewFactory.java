@@ -46,7 +46,13 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
         if (task.getTaskId() == null) throw new IllegalArgumentException(NULL_TASK_ID_EXCEPTION_MESSAGE);
         Node card;
         TaskCardController cardController;
-        if(task.isScheduled())
+        if(task.getDuration() == 0)
+        {
+            FXMLLoader doneLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/done-task-card.fxml"));
+            card = doneLoader.load();
+            cardController= doneLoader.getController();
+        }
+        else if(task.isScheduled())
         {
             FXMLLoader scheduledLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/scheduled-task-card.fxml"));
             card = scheduledLoader.load();

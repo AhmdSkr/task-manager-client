@@ -42,7 +42,7 @@ public class TaskCardController {
     public void setDetails() {
         title.setText(this.model.getName());
         description.setText(this.model.getDescription());
-        if (model.isScheduled()) {
+        if (model.isScheduled() && model.getDuration()>0) {
             Label date = (Label) title.getParent().lookup("#schedule");
             date.setText("Scheduled For: " + model.getScheduledTime().atZone(ZoneId.systemDefault()).toLocalDate());
         }

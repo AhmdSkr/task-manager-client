@@ -11,6 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import com.rakkiz.taskmanagerclient.data.model.PomodoroTimerModel;
 
+import java.sql.SQLException;
+
 public class PomodoroTimerController {
     @FXML
     private Label time;
@@ -83,6 +85,12 @@ public class PomodoroTimerController {
         // Listener for cycleCount
         model.cycleCountProperty().addListener((obs, oldCount, newCount) ->{
             pomCycles.setText(""+newCount.intValue());
+            System.out.println("THE NEW DURATION: "+newCount.intValue());
+            try {
+                pomodoroController.updateTaskDuration(newCount.intValue());
+            } catch (SQLException e) {
+                throw new RuntimeException(e);
+            }
             if(newCount.intValue() == 0){
                 Vbox.setStyle("-fx-background-color: rgba(188, 226, 186, 0.5); -fx-background-radius: 50%;");
                 time.setText("DONE!");

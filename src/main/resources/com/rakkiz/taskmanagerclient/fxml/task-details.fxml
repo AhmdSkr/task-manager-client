@@ -48,7 +48,7 @@
                 <Font name="System Italic" size="14.0" />
             </font>
         </TextArea>
-      <Button mnemonicParsing="false" onAction="#onPomodoroClick" style="-fx-background-color: transparent; -fx-background-radius: 50%; -fx-font-size: 20px; -fx-padding: 10;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+      <Button fx:id="pomodoroButton" mnemonicParsing="false" onAction="#onPomodoroClick" style="-fx-background-color: transparent; -fx-background-radius: 50%; -fx-font-size: 20px; -fx-padding: 10;" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
           <graphic>
               <ImageView fitHeight="40.0" fitWidth="40.0" preserveRatio="true">
                   <Image url="@../images/pomodoro.png" />

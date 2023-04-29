@@ -10,6 +10,7 @@ import com.rakkiz.taskmanagerclient.view.strategy.duration.MediumDurationTaskFil
 import com.rakkiz.taskmanagerclient.view.strategy.duration.ShortDurationTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.type.ScheduledTypeTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.type.TypeTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.type.UnscheduledTypeTaskFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
