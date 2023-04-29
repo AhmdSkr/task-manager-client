@@ -6,17 +6,20 @@ import com.rakkiz.taskmanagerclient.data.TaskRepository;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import com.rakkiz.taskmanagerclient.view.factory.Filter.ConcreteFilterViewFactory;
 import com.rakkiz.taskmanagerclient.view.factory.TaskCard.ConcreteTaskCardViewFactory;
+import com.rakkiz.taskmanagerclient.view.strategy.date.DateTaskFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -24,11 +27,9 @@ public class TaskSackController implements Initializable {
     @FXML
     private GridPane allTasks;
     @FXML
-    private HBox menus,filters;
+    private HBox menus, filters;
 
-    @FXML
-    private AnchorPane addTaskButton;
-
+    private ArrayList<FilterController> filterControllers;
 
     private final TaskRepository repository;
     private final ConcreteTaskCardViewFactory factory;
@@ -42,10 +43,15 @@ public class TaskSackController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        addTasks();
+        try {
+            addTasks(null);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         // Add the necessary filters
         try {
-            filterViewFactory.addFilters(filters);
+            filterControllers = filterViewFactory.addFilters(filters, this);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -65,16 +71,15 @@ public class TaskSackController implements Initializable {
         menus.getChildren().add(root);
     }
 
-    public void addTasks() {
+    public void addTasks(List<Task> tasks) throws Exception {
+        if (tasks == null) tasks = repository.getAllTasks();
         // Add all the tasks in the database
         allTasks.getChildren().clear();
-        List<Task> tasks;
         int cols = allTasks.getColumnCount();
         int i = 0, j = 0;
         try {
-            tasks = repository.getAllTasks();
             for (Task task : tasks) {
-                allTasks.add(factory.create(task,this), j, i);
+                allTasks.add(factory.create(task, this), j, i);
                 j++;
                 if (j == cols) {
                     j = 0;
@@ -84,5 +89,36 @@ public class TaskSackController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void filterTasks() throws Exception {
+
+        Node filterTypeRoot = filters.lookup("#TypeFilterRoot");
+        ChoiceBox typeChoiceBox = (ChoiceBox) filterTypeRoot.lookup("#choiceBox");
+
+        Node filterDateRoot = filters.lookup("#DateFilterRoot");
+        ChoiceBox dateChoiceBox = (ChoiceBox) filterDateRoot.lookup("#choiceBox");
+        if (typeChoiceBox.getValue().equals("Scheduled")) {
+            filterDateRoot.setDisable(false);
+        } else {
+            filterControllers.get(filterControllers.size() - 1).setTaskFilter(new DateTaskFilter());
+            dateChoiceBox.setValue("Date");
+            filterControllers.get(filterControllers.size() - 1).setNormal();
+            filterDateRoot.setDisable(true);
+        }
+
+        List<Task> tasks = repository.getAllTasks();
+        List<Task> filtered = new ArrayList<>();
+        for (Task task : tasks) {
+            boolean filterFlag = true;
+            for (FilterController filterController : filterControllers) {
+                if (!filterController.getTaskFilter().filter(task)) {
+                    filterFlag = false;
+                    break;
+                }
+            }
+            if (filterFlag) filtered.add(task);
+        }
+        addTasks(filtered);
     }
 }

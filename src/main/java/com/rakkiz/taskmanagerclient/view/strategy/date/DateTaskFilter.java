@@ -5,7 +5,7 @@ import com.rakkiz.taskmanagerclient.view.strategy.TaskFilter;
 
 import java.util.Date;
 
-public abstract class DateTaskFilter implements TaskFilter {
+public class DateTaskFilter implements TaskFilter {
 
     private Date filterDate;
 
@@ -14,5 +14,5 @@ public abstract class DateTaskFilter implements TaskFilter {
     }
 
     @Override
-    public abstract boolean filter(Task task);
+    public boolean filter(Task task){return true;};
 }
