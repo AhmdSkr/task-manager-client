@@ -18,8 +18,13 @@ public class AddTaskController {
     @FXML
     private AnchorPane anchorRoot;
     DerbyTaskRepository taskrepo = DerbyTaskRepository.getInstance();
+    TaskSackController taskSackController;
 
     public AddTaskController() throws SQLException {
+    }
+
+    public void setTaskSackController(TaskSackController taskSackController) {
+        this.taskSackController = taskSackController;
     }
 
     @FXML
@@ -32,6 +37,7 @@ public class AddTaskController {
         AnchorPane taskAnchor = loader.load();
         TaskCardController controller = loader.getController();
         controller.setTaskModel(task);
+        controller.setTaskSackController(taskSackController);
 
         Scene scene = anchorRoot.getScene();
         GridPane gridPane = (GridPane) scene.lookup("#allTasks");
@@ -50,6 +56,7 @@ public class AddTaskController {
             }
             gridPane.add(taskAnchor, colIndex, rowIndex);
         }
+
         // show the taskDetails of the card
         controller.goToDetails();
 

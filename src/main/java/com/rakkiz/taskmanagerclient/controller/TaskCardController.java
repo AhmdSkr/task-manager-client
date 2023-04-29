@@ -15,18 +15,24 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.Window;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.time.ZoneId;
-import java.util.Date;
 
 public class TaskCardController {
     private Task model;
+
+    private TaskSackController taskSackController;
     @FXML
     private AnchorPane task;
     @FXML
     private Label title, description;
+
+    public void setTaskSackController(TaskSackController taskSackController) {
+        this.taskSackController = taskSackController;
+    }
 
     public void setTaskModel(Task model) {
         this.model = model;
@@ -36,9 +42,9 @@ public class TaskCardController {
     public void setDetails() {
         title.setText(this.model.getName());
         description.setText(this.model.getDescription());
-        if(model.isScheduled()){
+        if (model.isScheduled()) {
             Label date = (Label) title.getParent().lookup("#schedule");
-            date.setText("Scheduled For: "+model.getScheduledTime().atZone(ZoneId.systemDefault()).toLocalDate());
+            date.setText("Scheduled For: " + model.getScheduledTime().atZone(ZoneId.systemDefault()).toLocalDate());
         }
     }
 
@@ -92,7 +98,7 @@ public class TaskCardController {
         TaskDetailsController taskDetailsController = fxmlLoader.getController();
         taskDetailsController.setStage(popupStage);
         taskDetailsController.setTaskDetails(this.model);
-
+        taskDetailsController.addDetails();
         // put stage position on screen
         popupStage.setX(300);
         popupStage.setY(150);
@@ -104,9 +110,11 @@ public class TaskCardController {
         BoxBlur blur = new BoxBlur(10, 10, 3);
         Parent parentRoot = task.getScene().getRoot();
         parentRoot.setEffect(blur);
+
+
         popupStage.setOnHidden(event -> {
             parentRoot.setEffect(null);
-            this.setDetails();
+            taskSackController.addTasks();
         });
 
         // set the anchorPane from the scaffold

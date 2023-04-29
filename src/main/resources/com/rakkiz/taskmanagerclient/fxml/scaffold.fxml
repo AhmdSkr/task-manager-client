@@ -13,6 +13,5 @@
      </ImageView>
     
     <AnchorPane fx:id="content" minHeight="-Infinity" prefHeight="807.0" AnchorPane.leftAnchor="37.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
-        <fx:include source="task-sack.fxml" />
     </AnchorPane>
 </AnchorPane>

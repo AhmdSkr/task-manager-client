@@ -2,6 +2,7 @@ package com.rakkiz.taskmanagerclient.view.factory.TaskCard;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.controller.TaskCardController;
+import com.rakkiz.taskmanagerclient.controller.TaskSackController;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -40,7 +41,7 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
      * @return TaskCard view's root element
      * @throws Exception if the FXML resource fails to load or the task is invalid or null
      */
-    public Node create(Task task) throws Exception {
+    public Node create(Task task, TaskSackController taskSackController) throws Exception {
         if (task == null) throw new NullPointerException(NULL_TASK_EXCEPTION_MESSAGE);
         if (task.getTaskId() == null) throw new IllegalArgumentException(NULL_TASK_ID_EXCEPTION_MESSAGE);
         Node card;
@@ -58,6 +59,7 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
             cardController= loader.getController();
         }
         cardController.setTaskModel(task);
+        cardController.setTaskSackController(taskSackController);
         return card;
     }
 }

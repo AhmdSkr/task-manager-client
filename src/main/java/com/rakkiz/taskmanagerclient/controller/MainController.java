@@ -18,11 +18,11 @@ public class MainController {
     private AnchorPane content;
 
     @FXML
-    private void onTaskSackClick() throws IOException {
+    public void onTaskSackClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
         Stage stage = (Stage) logo.getScene().getWindow();
         ObservableList<Node> list = content.getChildren();
-        list.remove(0);
+        if(list.size() > 0) list.remove(0);
         list.add(0, fxmlLoader.load());
         stage.show();
     }

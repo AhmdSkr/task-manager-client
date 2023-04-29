@@ -1,6 +1,7 @@
 package com.rakkiz.taskmanagerclient.view.factory.TaskCard;
 
 
+import com.rakkiz.taskmanagerclient.controller.TaskSackController;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import javafx.scene.Node;
 
@@ -16,5 +17,5 @@ public interface TaskCardViewFactory {
      * @return TaskCard view's root element
      * @throws Exception if task is invalid or failed to create the view.
      */
-    Node create(Task task) throws Exception;
+    Node create(Task task, TaskSackController taskSackController) throws Exception;
 }

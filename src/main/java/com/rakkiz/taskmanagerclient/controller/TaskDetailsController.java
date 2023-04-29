@@ -34,15 +34,13 @@ public class TaskDetailsController implements Initializable {
     private HBox filters;
 
 
-    public TaskDetailsController() {
-        this.task = new Task();
-    }
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         title.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.NAME_LEN_MAX ? null : change));
         description.setTextFormatter(new TextFormatter<>(change -> change.getControlNewText().length() > Task.DESC_LEN_MAX ? null : change));
+    }
 
+    public void addDetails() {
         try {
             addFilter("Duration");
             addFilter("Type");
@@ -55,13 +53,9 @@ public class TaskDetailsController implements Initializable {
         FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/detail-filter.fxml"));
         Node node = loader.load();
         DetailFilterController detailFilterController = loader.getController();
-        if (type == "Duration")
-        {
-            // TODO: check why the task.getDuration() is only giving 1
-            System.out.println("task.getDuration(): "+task.getDuration());
+        if (type == "Duration") {
             detailFilterController.durationDetail(task.getDuration());
-        }
-        else if (type == "Type") detailFilterController.typeDetail(task.getScheduledTime());
+        } else if (type == "Type") detailFilterController.typeDetail(task.getScheduledTime());
         filters.getChildren().add(node);
     }
 
@@ -95,12 +89,12 @@ public class TaskDetailsController implements Initializable {
             HBox hbox = (HBox) node;
             Node lastChild = hbox.getChildren().get(hbox.getChildren().size() - 1);
             if (lastChild instanceof TextField) {
-                int duration = Integer.parseInt(((TextField)lastChild).getText().toString());
-                System.out.println("THIS IS THE DURATION "+duration);
+                int duration = Integer.parseInt(((TextField) lastChild).getText().toString());
+                System.out.println("THIS IS THE DURATION " + duration);
                 task.setDuration(duration);
             } else if (lastChild instanceof DatePicker) {
                 Instant date = ((DatePicker) lastChild).getValue().atStartOfDay(ZoneId.systemDefault()).toInstant();
-                System.out.println("THIS IS THE SCHEDULED DATE "+date.toString());
+                System.out.println("THIS IS THE SCHEDULED DATE " + date.toString());
                 task.setScheduleTime(date);
             } else {
                 System.out.println("THIS IS UNSCHEDULED ");
