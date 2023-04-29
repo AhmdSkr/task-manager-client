@@ -114,7 +114,11 @@ public class TaskCardController {
 
         popupStage.setOnHidden(event -> {
             parentRoot.setEffect(null);
-            taskSackController.addTasks();
+            try {
+                taskSackController.filterTasks();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
         });
 
         // set the anchorPane from the scaffold

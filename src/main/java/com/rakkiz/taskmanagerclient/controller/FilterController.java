@@ -2,9 +2,13 @@ package com.rakkiz.taskmanagerclient.controller;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.strategy.date.DateTaskFilter;
-import com.rakkiz.taskmanagerclient.view.strategy.duration.DurationTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.TaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.date.*;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.DurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.LongDurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.MediumDurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.duration.ShortDurationTaskFilter;
+import com.rakkiz.taskmanagerclient.view.strategy.type.ScheduledTypeTaskFilter;
 import com.rakkiz.taskmanagerclient.view.strategy.type.TypeTaskFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -21,7 +25,13 @@ import java.util.ResourceBundle;
 
 public class FilterController implements Initializable {
     private TaskFilter taskFilter;
+    private TaskSackController taskSackController;
 
+    public void setTaskSackController(TaskSackController taskSackController) {
+        this.taskSackController = taskSackController;
+    }
+
+    public TaskFilter getTaskFilter(){return taskFilter;}
     @FXML
     private ChoiceBox<String> choiceBox;
     private HBox root;
@@ -37,7 +47,32 @@ public class FilterController implements Initializable {
         root.setOnMouseClicked(event -> choiceBox.show());
 
         choiceBox.setOnAction(event -> {
-            // TODO: String selectedValue = choiceBox.getValue();
+            String value = choiceBox.getValue();
+            switch (value) {
+                case "Date":
+                    setTaskFilter(new DateTaskFilter());
+                    break;
+                case "Past":
+                    setTaskFilter(new PastDateTaskFilter());
+                    break;
+                case "Yesterday":
+                    setTaskFilter(new YesterdayDateTaskFilter());
+                    break;
+                case "Today":
+                    setTaskFilter(new TodayDateTaskFilter());
+                    break;
+                case "Tomorrow":
+                    setTaskFilter(new TomorrowDateTaskFilter());
+                    break;
+                case "Future":
+                    setTaskFilter(new FutureDateTaskFilter());
+                    break;
+            }
+            try {
+                taskSackController.filterTasks();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             styleRoot();
         });
     }
@@ -49,7 +84,27 @@ public class FilterController implements Initializable {
         root.setOnMouseClicked(event -> choiceBox.show());
 
         choiceBox.setOnAction(event -> {
-            // TODO: String selectedValue = choiceBox.getValue();
+            String value = choiceBox.getValue();
+            switch (value) {
+                case "Duration":
+                    setTaskFilter(new DurationTaskFilter());
+                    break;
+                case "Short":
+                    setTaskFilter(new ShortDurationTaskFilter());
+                    break;
+                case "Medium":
+                    setTaskFilter(new MediumDurationTaskFilter());
+                    break;
+                case "Long":
+                    setTaskFilter(new LongDurationTaskFilter());
+                    break;
+            }
+
+            try {
+                taskSackController.filterTasks();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             styleRoot();
         });
     }
@@ -61,7 +116,23 @@ public class FilterController implements Initializable {
         root.setOnMouseClicked(event -> choiceBox.show());
 
         choiceBox.setOnAction(event -> {
-            // TODO: String selectedValue = choiceBox.getValue();
+            String value = choiceBox.getValue();
+            switch (value){
+                case "Type":
+                    setTaskFilter(new TypeTaskFilter());
+                    break;
+                case "Scheduled":
+                    setTaskFilter(new ScheduledTypeTaskFilter());
+                    break;
+                case "Unscheduled":
+                    setTaskFilter(new UnscheduledTypeTaskFilter());
+                    break;
+            }
+            try {
+                taskSackController.filterTasks();
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
             styleRoot();
         });
     }
