@@ -2,18 +2,11 @@ package com.rakkiz.taskmanagerclient.controller;
 
 import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import javafx.fxml.FXML;
-import javafx.geometry.Insets;
 import javafx.scene.control.Label;
 import javafx.scene.control.ToggleButton;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Color;
 import javafx.scene.media.*;
 import com.rakkiz.taskmanagerclient.data.model.PomodoroTimerModel;
-
-import java.io.File;
 import java.sql.SQLException;
 
 public class PomodoroTimerController {
@@ -29,8 +22,7 @@ public class PomodoroTimerController {
     @FXML
     private ToggleButton SP;
 
-    //private AudioClip sound;
-    Media sound;
+    private Media sound;
 
 
 
@@ -39,8 +31,11 @@ public class PomodoroTimerController {
 
     String timeString;
 
+    /**
+     * sets the cycleCount in the timer model according to the task given
+     * @param duration
+     */
     public void setOriginalCycle(int duration){
-        //model.setOriginalCycleCount(duration);
         model.setCycleCount(duration);
     }
 
@@ -50,39 +45,55 @@ public class PomodoroTimerController {
 
     @FXML
     public void initialize() {
-        //model = new PomodoroTimerModel();
         sound = new Media(TaskManagerApplication.class.getResource("sounds/sound.wav").toString());
         model.setWorkState();
-        time.setText(model.getOriginalWorkTimeInSeconds());
+        time.setText(formatTime(model.getOriginalWorkTimeInSeconds()));
         Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
         pomCycles.setText(""+model.getCycleCount());
 
-        // Listener for workTimeSeconds
+
+        /**
+         * Listener for workTimeSeconds
+         * on every change to the work time the time FXML is changed accordingly
+         * and when the work time hits 0 a sound is played notifying the user
+         * VBox color is changed
+         */
         model.workTimeInSecondsProperty().addListener((obs, oldCount, newCount) -> {
-            int minutes = newCount.intValue() / 60;
-            int seconds = newCount.intValue() % 60;
-            timeString= String.format("%02d:%02d", minutes, seconds);
+            timeString = formatTime(newCount.intValue());
             time.setText(timeString);
             if (newCount.intValue() == 0){
                 playSound();
                 Vbox.setStyle("-fx-background-color: rgba(199, 215, 226, 0.5); -fx-background-radius: 50%;");
                 if(model.getCycleCount()!=1) {
-                    time.setText("" + model.getOriginalBreakTimeInSeconds());
+                    time.setText("" + formatTime(model.getOriginalBreakTimeInSeconds()));
                 }
             }
         });
-        // Listener for breakTimeSeconds
+
+
+        /**
+         * Listener for breakTimeSeconds
+         * on every change to the break time the time FXML is changed accordingly
+         * and when the work time hits 0 a sound is played notifying the user
+         * VBox color is changed
+         */
         model.breakTimeInSecondsProperty().addListener((obs, oldCount, newCount) -> {
-            int minutes = newCount.intValue() / 60;
-            int seconds = newCount.intValue() % 60;
-            timeString= String.format("%02d:%02d", minutes, seconds);
+            timeString = formatTime(newCount.intValue());
             time.setText(timeString);
             if (newCount.intValue() == 0){
                 playSound();
                 Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
             }
         });
-        // Listener for cycleCount
+
+
+        /**
+         * Listener for cycleCount
+         * on every change to the cycleCount the time FXML is changed accordingly
+         * and when the cycleCount hits 0 the button is disabled and hidden
+         * VBox color is changed
+         * "DONE!" is displayed instead of the timer
+         */
         model.cycleCountProperty().addListener((obs, oldCount, newCount) ->{
             pomCycles.setText(""+newCount.intValue());
             System.out.println("THE NEW DURATION: "+newCount.intValue());
@@ -99,6 +110,9 @@ public class PomodoroTimerController {
             }
         });
 
+        /**
+         * changes function and button text based on if the timer is running or stopped
+         */
         SP.setOnAction(event -> {
             if(SP.isSelected()){
                 startTimer();
@@ -111,6 +125,9 @@ public class PomodoroTimerController {
 
     }
 
+    /**
+     * plays as sound
+     */
     public void playSound() {
         MediaPlayer player = new MediaPlayer(sound);
         player.setVolume(0.5);
@@ -118,6 +135,9 @@ public class PomodoroTimerController {
     }
 
 
+    /**
+     * starts timer according to currentstate
+     */
     @FXML
     private void startTimer() {
         switch (model.getCurrentState()) {
@@ -126,11 +146,27 @@ public class PomodoroTimerController {
         }
     }
 
+    /**
+     * stops timer according to currentstate
+     */
     @FXML
     private void stopTimer() {
         switch (model.getCurrentState()) {
             case WORK -> model.stopWorkTimer();
             case BREAK -> model.stopBreakTimer();
         }
+    }
+
+
+    /**
+     * returns the work or break timer in the mm:ss format
+     *
+     * @param timeInSeconds
+     * @return
+     */
+    private String formatTime(int timeInSeconds) {
+        int minutes = timeInSeconds / 60;
+        int seconds = timeInSeconds % 60;
+        return String.format("%02d:%02d", minutes, seconds);
     }
 }

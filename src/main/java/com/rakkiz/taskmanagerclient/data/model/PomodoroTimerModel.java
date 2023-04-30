@@ -14,15 +14,9 @@ public class PomodoroTimerModel{
     private Timeline breakTimer;
     private final int originalWorkTimeInSeconds = 1 * 10; // 25 minutes
     private final int originalBreakTimeInSeconds = 1 * 5; // 5 minutes
-    //private int originalCycleCount;
 
 
-//    public void setOriginalCycleCount(int cycles){
-//        originalCycleCount = cycles;
-//    }
 
-
-    //TEST
     private IntegerProperty workTimeInSeconds = new SimpleIntegerProperty(originalWorkTimeInSeconds);
 
 
@@ -68,7 +62,6 @@ public class PomodoroTimerModel{
     public void decrementCycleCount() { cycleCount.set(cycleCount.get() - 1);}
 
 
-    //TEST
 
     public enum TimerState {WORK, BREAK};
     private TimerState currentState;
@@ -85,22 +78,15 @@ public class PomodoroTimerModel{
         return currentState;
     }
 
-    public String getOriginalWorkTimeInSeconds(){
-        return formatTime(originalWorkTimeInSeconds);
+    public int getOriginalWorkTimeInSeconds(){
+        return originalWorkTimeInSeconds;
     }
 
-//    public void setOriginalWorkTimeInSeconds(int seconds){
-//        this.workTimeInSeconds = seconds;
-//    }
 
-
-    public String getOriginalBreakTimeInSeconds(){
-        return formatTime(originalBreakTimeInSeconds);
+    public int getOriginalBreakTimeInSeconds(){
+        return originalBreakTimeInSeconds;
     }
 
-//    public void setOriginalBreakTimeInSeconds(int seconds){
-//        this.breakTimeInSeconds = seconds;
-//    }
 
     public int getCycleCount(){
         return cycleCount.get();
@@ -109,10 +95,14 @@ public class PomodoroTimerModel{
     public void setCycleCount(int cycle) {cycleCount.set(cycle);}
 
 
-
-
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
+    /**
+     * Starts the work timer
+     * every second it decrements the work time
+     * when the work time hits 0 the work timer stops and calls the
+     * startBreakTimer() to start the break Timer
+     * and decrements the cycle count (duration of the task).
+     * if cycleCount hits 0 all the timers are stopped.
+     */
     public void startWorkTimer() {
         workTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             decrementWorkTime();
@@ -120,7 +110,6 @@ public class PomodoroTimerModel{
                 stopWorkTimer();
                 resetBreakTimer();
                 startBreakTimer();
-                //originalCycleCount--;
                 decrementCycleCount();
                 if (cycleCount.get() == 0) {
                     stopTimers();
@@ -133,11 +122,20 @@ public class PomodoroTimerModel{
 
     }
 
+    /**
+     * Stops the work Timer
+     */
     public void stopWorkTimer() {
         workTimer.stop();
         currentState = TimerState.WORK;
     }
 
+    /**
+     * Starts the break Timer
+     * decrements the break timer every second
+     * when the work time hits 0 the break timer stops and calls the
+     * startWorkTimer() to start the work Timer
+     */
     public void startBreakTimer() {
         breakTimer = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
             decrementBreakTime();
@@ -152,19 +150,31 @@ public class PomodoroTimerModel{
         currentState = TimerState.BREAK;
     }
 
+    /**
+     * stops break timer
+     */
     public void stopBreakTimer() {
         breakTimer.stop();
         currentState = TimerState.BREAK;
     }
 
+    /**
+     * resets work timer to initial time 25 mins
+     */
     private void resetWorkTimer() {
         workTimeInSeconds.set(originalWorkTimeInSeconds);
     }
 
+    /**
+     * resets break timer to initial time 5 mins
+     */
     private void resetBreakTimer() {
         breakTimeInSeconds.set(originalBreakTimeInSeconds);
     }
 
+    /**
+     * stops the timer that is running
+     */
     private void stopTimers() {
         if (workTimer != null) {
             workTimer.stop();
@@ -172,35 +182,13 @@ public class PomodoroTimerModel{
         if (breakTimer != null) {
             breakTimer.stop();
         }
-        //cycleCount.set(originalCycleCount);
-        //resetWorkTimer();
-        //resetBreakTimer();
     }
 
-    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-
-//    public Background getBackgroundColor(String color) {
-//        switch (color) {
-//            case "red":
-//                return backgroundRed;
-//            //    break;
-//            case "blue":
-//                return backgroundBlue;
-//             //   break;
-//            case "green":
-//                return backgroundGreen;
-//              //  break;
-//        }
-//        return backgroundRed;
-//    }
-
-
-    private String formatTime(int timeInSeconds) {
-        int minutes = timeInSeconds / 60;
-        int seconds = timeInSeconds % 60;
-        return String.format("%02d:%02d", minutes, seconds);
-    }
+    /**
+     * returns the work or break timer in the mm:ss format
+     *
+     * @param timeInSeconds
+     * @return
+     */
 
 }
