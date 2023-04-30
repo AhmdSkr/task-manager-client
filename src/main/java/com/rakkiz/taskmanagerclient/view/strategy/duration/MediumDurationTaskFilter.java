@@ -1,12 +1,17 @@
 package com.rakkiz.taskmanagerclient.view.strategy.duration;
 
 import com.rakkiz.taskmanagerclient.data.model.Task;
-import com.rakkiz.taskmanagerclient.view.strategy.duration.DurationTaskFilter;
 
 public class MediumDurationTaskFilter extends DurationTaskFilter {
+
+    /**
+     * Task duration should be between 10 & 20 cycles
+     *
+     * @param task Model for reference
+     * @return boolean
+     */
     @Override
     public boolean filter(Task task) {
-        if(task.getDuration()>5 && task.getDuration()<15) return true;
-        return false;
+        return task.getDuration() > 10 && task.getDuration() <= 20;
     }
 }

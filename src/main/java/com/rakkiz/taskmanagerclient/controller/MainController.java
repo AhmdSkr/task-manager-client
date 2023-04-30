@@ -17,12 +17,17 @@ public class MainController {
     @FXML
     private AnchorPane content;
 
+    /**
+     * Change AnchorPane content to taskSack
+     *
+     * @throws IOException when loading the fxml
+     */
     @FXML
     public void onTaskSackClick() throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
         Stage stage = (Stage) logo.getScene().getWindow();
         ObservableList<Node> list = content.getChildren();
-        if(list.size() > 0) list.remove(0);
+        if (list.size() > 0) list.remove(0);
         list.add(0, fxmlLoader.load());
         stage.show();
     }

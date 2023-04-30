@@ -53,7 +53,7 @@ public class PomodoroTimerController {
         pomCycles.setText(""+model.getCycleCount());
 
 
-        /**
+        /*
          * Listener for workTimeSeconds
          * on every change to the work time the time FXML is changed accordingly
          * and when the work time hits 0 a sound is played notifying the user
@@ -72,7 +72,7 @@ public class PomodoroTimerController {
         });
 
 
-        /**
+        /*
          * Listener for breakTimeSeconds
          * on every change to the break time the time FXML is changed accordingly
          * and when the work time hits 0 a sound is played notifying the user
@@ -88,7 +88,7 @@ public class PomodoroTimerController {
         });
 
 
-        /**
+        /*
          * Listener for cycleCount
          * on every change to the cycleCount the time FXML is changed accordingly
          * and when the cycleCount hits 0 the button is disabled and hidden
@@ -97,9 +97,8 @@ public class PomodoroTimerController {
          */
         model.cycleCountProperty().addListener((obs, oldCount, newCount) ->{
             pomCycles.setText(""+newCount.intValue());
-            System.out.println("THE NEW DURATION: "+newCount.intValue());
             try {
-                pomodoroController.updateTaskDuration(newCount.intValue());
+                if(pomodoroController != null) pomodoroController.updateTaskDuration(newCount.intValue());
             } catch (SQLException e) {
                 throw new RuntimeException(e);
             }
@@ -111,7 +110,7 @@ public class PomodoroTimerController {
             }
         });
 
-        /**
+        /*
          * changes function and button text based on if the timer is running or stopped
          */
         SP.setOnAction(event -> {

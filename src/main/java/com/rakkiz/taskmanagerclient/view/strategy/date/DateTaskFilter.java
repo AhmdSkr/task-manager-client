@@ -3,16 +3,16 @@ package com.rakkiz.taskmanagerclient.view.strategy.date;
 import com.rakkiz.taskmanagerclient.data.model.Task;
 import com.rakkiz.taskmanagerclient.view.strategy.TaskFilter;
 
-import java.util.Date;
-
 public class DateTaskFilter implements TaskFilter {
 
-    private Date filterDate;
-
-    public void setDate(Date date) {
-        this.filterDate = date;
-    }
-
+    /**
+     * Scheduled date can be any value
+     *
+     * @param task Model for reference
+     * @return boolean
+     */
     @Override
-    public boolean filter(Task task){return true;};
+    public boolean filter(Task task) {
+        return true;
+    }
 }

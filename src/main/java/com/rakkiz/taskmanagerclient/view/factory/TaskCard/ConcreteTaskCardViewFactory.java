@@ -10,7 +10,7 @@ import javafx.scene.Node;
 import java.net.URL;
 
 /**
- * The ConcreteTaskCardViewFactory is responsible for loading TaskCard views into the application. <br/>
+ * The ConcreteTaskCardViewFactory is responsible for loading TaskCard views into the application.
  */
 public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
 
@@ -44,26 +44,25 @@ public class ConcreteTaskCardViewFactory implements TaskCardViewFactory {
     public Node create(Task task, TaskSackController taskSackController) throws Exception {
         if (task == null) throw new NullPointerException(NULL_TASK_EXCEPTION_MESSAGE);
         if (task.getTaskId() == null) throw new IllegalArgumentException(NULL_TASK_ID_EXCEPTION_MESSAGE);
+
         Node card;
         TaskCardController cardController;
-        if(task.getDuration() == 0)
-        {
+
+        if (task.getDuration() == 0) {
             FXMLLoader doneLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/done-task-card.fxml"));
             card = doneLoader.load();
-            cardController= doneLoader.getController();
-        }
-        else if(task.isScheduled())
-        {
+            cardController = doneLoader.getController();
+        } else if (task.isScheduled()) {
             FXMLLoader scheduledLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/scheduled-task-card.fxml"));
             card = scheduledLoader.load();
-            cardController= scheduledLoader.getController();
-        }
-        else{
+            cardController = scheduledLoader.getController();
+        } else {
             loader.setRoot(null);
             loader.setController(null);
             card = loader.load();
-            cardController= loader.getController();
+            cardController = loader.getController();
         }
+
         cardController.setTaskModel(task);
         cardController.setTaskSackController(taskSackController);
         return card;

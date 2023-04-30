@@ -8,9 +8,10 @@ import java.io.IOException;
 public interface FilterVeiwFactory {
 
     /**
-     * Creates a new TaskCard view for a given Task Model.
+     * Creates a new Filter view for the Task Sack.
      *
-     * @param  type String to identify the type of filter
+     * @param type               String to identify the type of filter
+     * @param taskSackController Controller to assign the filters to the task sack
      * @return Filter view's root element
      */
     Node create(String type, TaskSackController taskSackController) throws IOException;

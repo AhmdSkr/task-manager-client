@@ -7,7 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.util.Duration;
 
 
-public class PomodoroTimerModel{
+public class PomodoroTimerModel {
 
 
     private Timeline workTimer;
@@ -16,17 +16,13 @@ public class PomodoroTimerModel{
     private final int originalBreakTimeInSeconds = 5 * 60; // 5 minutes
 
 
-
-    private IntegerProperty workTimeInSeconds = new SimpleIntegerProperty(originalWorkTimeInSeconds);
-
+    private final IntegerProperty workTimeInSeconds = new SimpleIntegerProperty(originalWorkTimeInSeconds);
 
 
-    private IntegerProperty breakTimeInSeconds = new SimpleIntegerProperty(originalBreakTimeInSeconds);
+    private final IntegerProperty breakTimeInSeconds = new SimpleIntegerProperty(originalBreakTimeInSeconds);
 
 
-
-    private IntegerProperty cycleCount = new SimpleIntegerProperty();
-
+    private final IntegerProperty cycleCount = new SimpleIntegerProperty();
 
 
     public int getWorkTimeInSeconds() {
@@ -46,7 +42,7 @@ public class PomodoroTimerModel{
         return breakTimeInSeconds;
     }
 
-    public IntegerProperty cycleCountProperty(){
+    public IntegerProperty cycleCountProperty() {
         return cycleCount;
     }
 
@@ -59,37 +55,41 @@ public class PomodoroTimerModel{
         breakTimeInSeconds.set(breakTimeInSeconds.get() - 1);
     }
 
-    public void decrementCycleCount() { cycleCount.set(cycleCount.get() - 1);}
-
+    public void decrementCycleCount() {
+        cycleCount.set(cycleCount.get() - 1);
+    }
 
 
     public enum TimerState {WORK, BREAK}
+
     private TimerState currentState;
 
 
-    public void setWorkState(){
+    public void setWorkState() {
         currentState = TimerState.WORK;
     }
 
-    public TimerState getCurrentState(){
+    public TimerState getCurrentState() {
         return currentState;
     }
 
-    public int getOriginalWorkTimeInSeconds(){
+    public int getOriginalWorkTimeInSeconds() {
         return originalWorkTimeInSeconds;
     }
 
 
-    public int getOriginalBreakTimeInSeconds(){
+    public int getOriginalBreakTimeInSeconds() {
         return originalBreakTimeInSeconds;
     }
 
 
-    public int getCycleCount(){
+    public int getCycleCount() {
         return cycleCount.get();
     }
 
-    public void setCycleCount(int cycle) {cycleCount.set(cycle);}
+    public void setCycleCount(int cycle) {
+        cycleCount.set(cycle);
+    }
 
 
     /**
@@ -180,12 +180,4 @@ public class PomodoroTimerModel{
             breakTimer.stop();
         }
     }
-
-    /**
-     * returns the work or break timer in the mm:ss format
-     *
-     * @param timeInSeconds
-     * @return
-     */
-
 }

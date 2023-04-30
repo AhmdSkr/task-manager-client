@@ -1,7 +1,7 @@
 @import url("style.css");
 @import url("fonts.css");
 
-.taskTitle{
+.taskTitle {
     -fx-text-fill: #E63946;
     -fx-font-family: 'Fira Medium';
     -fx-font-weight: 700;
@@ -9,14 +9,14 @@
     -fx-line-spacing: 5px;
 }
 
-.taskDesc{
+.taskDesc {
     -fx-font-family: 'Merriweather Italic';
     -fx-font-size: 16px;
     -fx-font-weight: 400;
     -fx-font-style: italic;
 }
 
-.btnDel{
+.btnDel {
     -fx-background-color: transparent;
     -fx-background-radius: 50%;
     -fx-text-fill: black;
@@ -26,5 +26,5 @@
 }
 
 .task {
-    -fx-effect: dropshadow(three-pass-box, rgba(69,123,157,0.26), 10, 0, 1, 2);
+    -fx-effect: dropshadow(three-pass-box, rgba(69, 123, 157, 0.26), 10, 0, 1, 2);
 }

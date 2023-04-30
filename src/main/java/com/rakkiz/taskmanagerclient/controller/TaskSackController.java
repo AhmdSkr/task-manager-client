@@ -28,9 +28,7 @@ public class TaskSackController implements Initializable {
     private GridPane allTasks;
     @FXML
     private HBox menus, filters;
-
     private ArrayList<FilterController> filterControllers;
-
     private final TaskRepository repository;
     private final ConcreteTaskCardViewFactory factory;
     private final ConcreteFilterViewFactory filterViewFactory;
@@ -43,22 +41,12 @@ public class TaskSackController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        try {
-            addTasks(null);
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
-
-        // Add the necessary filters
+        // add tasks, filters, and addTask button
         try {
             filterControllers = filterViewFactory.addFilters(filters, this);
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
-
-        try {
             addAddTaskButton();
-        } catch (IOException e) {
+            addTasks();
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
@@ -71,9 +59,46 @@ public class TaskSackController implements Initializable {
         menus.getChildren().add(root);
     }
 
-    public void addTasks(List<Task> tasks) throws Exception {
+    /**
+     * Adds the tasks depending on the filters
+     *
+     * @throws Exception when adding to grid
+     */
+    public void addTasks() throws Exception {
+
+        // style type and date filters according to their values
+        Node filterTypeRoot = filters.lookup("#TypeFilterRoot");
+        ChoiceBox<String> typeChoiceBox = (ChoiceBox<String>) filterTypeRoot.lookup("#choiceBox");
+        Node filterDateRoot = filters.lookup("#DateFilterRoot");
+        ChoiceBox<String> dateChoiceBox = (ChoiceBox<String>) filterDateRoot.lookup("#choiceBox");
+        if (typeChoiceBox.getValue().equals("Scheduled")) filterDateRoot.setDisable(false);
+        else {
+            filterControllers.get(filterControllers.size() - 1).setTaskFilter(new DateTaskFilter());
+            dateChoiceBox.setValue("Date");
+            filterControllers.get(filterControllers.size() - 1).setNormal();
+            filterDateRoot.setDisable(true);
+        }
+
+        // filter all tasks from database
+        List<Task> tasks = repository.getAllTasks();
+        List<Task> filtered = new ArrayList<>();
+        for (Task task : tasks) {
+            boolean filterFlag = true;
+            for (FilterController filterController : filterControllers) {
+                if (!filterController.getTaskFilter().filter(task)) {
+                    filterFlag = false;
+                    break;
+                }
+            }
+            if (filterFlag) filtered.add(task);
+        }
+
+        addToGrid(filtered);
+    }
+
+    public void addToGrid(List<Task> tasks) throws Exception {
         if (tasks == null) tasks = repository.getAllTasks();
-        // Add all the tasks in the database
+
         allTasks.getChildren().clear();
         int cols = allTasks.getColumnCount();
         int i = 0, j = 0;
@@ -89,36 +114,5 @@ public class TaskSackController implements Initializable {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    public void filterTasks() throws Exception {
-
-        Node filterTypeRoot = filters.lookup("#TypeFilterRoot");
-        ChoiceBox typeChoiceBox = (ChoiceBox) filterTypeRoot.lookup("#choiceBox");
-
-        Node filterDateRoot = filters.lookup("#DateFilterRoot");
-        ChoiceBox dateChoiceBox = (ChoiceBox) filterDateRoot.lookup("#choiceBox");
-        if (typeChoiceBox.getValue().equals("Scheduled")) {
-            filterDateRoot.setDisable(false);
-        } else {
-            filterControllers.get(filterControllers.size() - 1).setTaskFilter(new DateTaskFilter());
-            dateChoiceBox.setValue("Date");
-            filterControllers.get(filterControllers.size() - 1).setNormal();
-            filterDateRoot.setDisable(true);
-        }
-
-        List<Task> tasks = repository.getAllTasks();
-        List<Task> filtered = new ArrayList<>();
-        for (Task task : tasks) {
-            boolean filterFlag = true;
-            for (FilterController filterController : filterControllers) {
-                if (!filterController.getTaskFilter().filter(task)) {
-                    filterFlag = false;
-                    break;
-                }
-            }
-            if (filterFlag) filtered.add(task);
-        }
-        addTasks(filtered);
     }
 }

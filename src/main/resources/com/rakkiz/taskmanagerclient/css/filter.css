@@ -1,6 +1,6 @@
 @import "fonts.css";
 
-.container{
+.container {
     -fx-border-radius: 60%;
     -fx-border-color: #C7C7C7;
     -fx-border-width: 1px;
@@ -8,13 +8,14 @@
     -fx-background-color: transparent;
     -fx-background-radius: 40px;
 }
+
 .label {
     -fx-font-family: 'PTSerif Regular';
     -fx-font-size: 20px;
     -fx-text-fill: inherit;
 }
 
-.container:hover{
+.container:hover {
     -fx-background-color: #457B9D;
     -fx-text-fill: #F6F6F6;
 }
