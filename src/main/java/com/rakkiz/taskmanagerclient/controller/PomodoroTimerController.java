@@ -1,5 +1,6 @@
 package com.rakkiz.taskmanagerclient.controller;
 
+import com.rakkiz.taskmanagerclient.TaskManagerApplication;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;
@@ -9,8 +10,10 @@ import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.media.*;
 import com.rakkiz.taskmanagerclient.data.model.PomodoroTimerModel;
 
+import java.io.File;
 import java.sql.SQLException;
 
 public class PomodoroTimerController {
@@ -26,14 +29,9 @@ public class PomodoroTimerController {
     @FXML
     private ToggleButton SP;
 
-    BackgroundFill backgroundFillRed = new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY);
-    BackgroundFill backgroundFillBlue = new BackgroundFill(Color.BLUE, CornerRadii.EMPTY, Insets.EMPTY);
-    BackgroundFill backgroundFillGreen = new BackgroundFill(Color.GREEN, CornerRadii.EMPTY, Insets.EMPTY);
+    //private AudioClip sound;
+    Media sound;
 
-    // Create a Background object with the BackgroundFill object
-    Background backgroundRed = new Background(backgroundFillRed);
-    Background backgroundBlue = new Background(backgroundFillBlue);
-    Background backgroundGreen = new Background(backgroundFillGreen);
 
 
     PomodoroTimerModel model = new PomodoroTimerModel();
@@ -53,6 +51,7 @@ public class PomodoroTimerController {
     @FXML
     public void initialize() {
         //model = new PomodoroTimerModel();
+        sound = new Media(TaskManagerApplication.class.getResource("sounds/sound.wav").toString());
         model.setWorkState();
         time.setText(model.getOriginalWorkTimeInSeconds());
         Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
@@ -65,7 +64,7 @@ public class PomodoroTimerController {
             timeString= String.format("%02d:%02d", minutes, seconds);
             time.setText(timeString);
             if (newCount.intValue() == 0){
-
+                playSound();
                 Vbox.setStyle("-fx-background-color: rgba(199, 215, 226, 0.5); -fx-background-radius: 50%;");
                 if(model.getCycleCount()!=1) {
                     time.setText("" + model.getOriginalBreakTimeInSeconds());
@@ -79,6 +78,7 @@ public class PomodoroTimerController {
             timeString= String.format("%02d:%02d", minutes, seconds);
             time.setText(timeString);
             if (newCount.intValue() == 0){
+                playSound();
                 Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
             }
         });
@@ -109,6 +109,12 @@ public class PomodoroTimerController {
             }
         });
 
+    }
+
+    public void playSound() {
+        MediaPlayer player = new MediaPlayer(sound);
+        player.setVolume(0.5);
+        player.play();
     }
 
 
