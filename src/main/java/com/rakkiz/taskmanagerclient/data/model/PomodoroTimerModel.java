@@ -12,8 +12,8 @@ public class PomodoroTimerModel{
 
     private Timeline workTimer;
     private Timeline breakTimer;
-    private final int originalWorkTimeInSeconds = 1 * 10; // 25 minutes
-    private final int originalBreakTimeInSeconds = 1 * 5; // 5 minutes
+    private final int originalWorkTimeInSeconds = 25 * 60; // 25 minutes
+    private final int originalBreakTimeInSeconds = 5 * 60; // 5 minutes
 
 
 
@@ -63,15 +63,12 @@ public class PomodoroTimerModel{
 
 
 
-    public enum TimerState {WORK, BREAK};
+    public enum TimerState {WORK, BREAK}
     private TimerState currentState;
 
 
     public void setWorkState(){
         currentState = TimerState.WORK;
-    }
-    public void setBreakState(){
-        currentState = TimerState.BREAK;
     }
 
     public TimerState getCurrentState(){
@@ -159,14 +156,14 @@ public class PomodoroTimerModel{
     }
 
     /**
-     * resets work timer to initial time 25 mins
+     * resets work timer to initial time 25 minutes
      */
     private void resetWorkTimer() {
         workTimeInSeconds.set(originalWorkTimeInSeconds);
     }
 
     /**
-     * resets break timer to initial time 5 mins
+     * resets break timer to initial time 5 minutes
      */
     private void resetBreakTimer() {
         breakTimeInSeconds.set(originalBreakTimeInSeconds);

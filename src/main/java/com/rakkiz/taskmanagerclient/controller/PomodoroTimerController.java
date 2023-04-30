@@ -8,6 +8,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.media.*;
 import com.rakkiz.taskmanagerclient.data.model.PomodoroTimerModel;
 import java.sql.SQLException;
+import java.util.Objects;
 
 public class PomodoroTimerController {
     @FXML
@@ -33,7 +34,7 @@ public class PomodoroTimerController {
 
     /**
      * sets the cycleCount in the timer model according to the task given
-     * @param duration
+     * @param duration duration of task (number of cycles)
      */
     public void setOriginalCycle(int duration){
         model.setCycleCount(duration);
@@ -45,7 +46,7 @@ public class PomodoroTimerController {
 
     @FXML
     public void initialize() {
-        sound = new Media(TaskManagerApplication.class.getResource("sounds/sound.wav").toString());
+        sound = new Media(Objects.requireNonNull(TaskManagerApplication.class.getResource("sounds/sound.wav")).toString());
         model.setWorkState();
         time.setText(formatTime(model.getOriginalWorkTimeInSeconds()));
         Vbox.setStyle("-fx-background-color: rgba(248, 196, 200, 0.5); -fx-background-radius: 50%;");
@@ -136,7 +137,7 @@ public class PomodoroTimerController {
 
 
     /**
-     * starts timer according to currentstate
+     * starts timer according to current state
      */
     @FXML
     private void startTimer() {
@@ -147,7 +148,7 @@ public class PomodoroTimerController {
     }
 
     /**
-     * stops timer according to currentstate
+     * stops timer according to current state
      */
     @FXML
     private void stopTimer() {
@@ -161,8 +162,8 @@ public class PomodoroTimerController {
     /**
      * returns the work or break timer in the mm:ss format
      *
-     * @param timeInSeconds
-     * @return
+     * @param timeInSeconds time that needs to be formatted
+     * @return returns a string in a mm:ss format
      */
     private String formatTime(int timeInSeconds) {
         int minutes = timeInSeconds / 60;
