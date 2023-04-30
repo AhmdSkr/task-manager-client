@@ -2,6 +2,7 @@ module com.rakkiz.taskmanagerclient {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.sql;
+    requires javafx.media;
 
 
     opens com.rakkiz.taskmanagerclient to javafx.fxml;
