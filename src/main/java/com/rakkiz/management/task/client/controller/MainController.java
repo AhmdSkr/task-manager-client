@@ -1,19 +1,15 @@
 package com.rakkiz.management.task.client.controller;
 
-import com.rakkiz.management.task.client.TaskManagerApplication;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.net.URL;
 
 public class MainController {
-    @FXML
-    private ImageView logo;
     @FXML
     private AnchorPane content;
 
@@ -23,12 +19,13 @@ public class MainController {
      * @throws IOException when loading the fxml
      */
     @FXML
-    public void onTaskSackClick() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-sack.fxml"));
-        Stage stage = (Stage) logo.getScene().getWindow();
+    public void onLogoClick() throws IOException {
+        String path = "/com/rakkiz/management/task/client/fxml/task-sack.fxml";
+        URL fxml = getClass().getResource(path);
+        FXMLLoader loader = new FXMLLoader(fxml);
+        Node child = loader.load();
         ObservableList<Node> list = content.getChildren();
-        if (list.size() > 0) list.remove(0);
-        list.add(0, fxmlLoader.load());
-        stage.show();
+        list.clear();
+        list.add(child);
     }
 }

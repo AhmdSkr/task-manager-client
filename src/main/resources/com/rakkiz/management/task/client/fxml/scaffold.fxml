@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/17.0.2-ea"
             fx:controller="com.rakkiz.management.task.client.controller.MainController">
-    <ImageView fx:id="logo" fitHeight="50.0" fitWidth="207.0" onMouseClicked="#onTaskSackClick" pickOnBounds="true"
+    <ImageView fitHeight="50.0" fitWidth="207.0" onMouseClicked="#onLogoClick" pickOnBounds="true"
                preserveRatio="true" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="40.0">
         <Image url="@../images/logo.png"/>
         <cursor>
@@ -16,5 +16,6 @@
 
     <AnchorPane fx:id="content" minHeight="-Infinity" prefHeight="807.0" AnchorPane.leftAnchor="37.0"
                 AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="100.0">
+        <fx:include source="task-sack.fxml"/>
     </AnchorPane>
 </AnchorPane>
