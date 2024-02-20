@@ -31,13 +31,17 @@ application {
 }
 
 javafx {
-    version = '18.0.2'
+    version = '21.0.2'
     modules = ['javafx.controls', 'javafx.fxml', 'javafx.media']
 }
 
 dependencies {
+    compileOnly 'org.projectlombok:lombok:1.18.30'
+    annotationProcessor 'org.projectlombok:lombok:1.18.30'
     implementation 'org.apache.derby:derby:10.17.1.0'
     implementation 'org.apache.derby:derbytools:10.17.1.0'
+    testCompileOnly 'org.projectlombok:lombok:1.18.30'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.30'
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
