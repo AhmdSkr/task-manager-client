@@ -1,6 +1,6 @@
 package com.rakkiz.taskmanagerclient;
 
-import com.rakkiz.taskmanagerclient.data.model.Task;
+import com.rakkiz.management.task.client.data.model.Task;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

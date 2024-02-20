@@ -1,8 +1,8 @@
 package com.rakkiz.taskmanagerclient;
 
-import com.rakkiz.taskmanagerclient.data.DerbyTaskRepository;
-import com.rakkiz.taskmanagerclient.data.TaskRepository;
-import com.rakkiz.taskmanagerclient.data.model.Task;
+import com.rakkiz.management.task.client.data.DerbyTaskRepository;
+import com.rakkiz.management.task.client.data.TaskRepository;
+import com.rakkiz.management.task.client.data.model.Task;
 import junit.framework.TestCase;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
