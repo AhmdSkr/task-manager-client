@@ -27,7 +27,9 @@ public class TaskSackController implements Initializable {
     @FXML
     private GridPane allTasks;
     @FXML
-    private HBox menus, filters;
+    private HBox filters;
+    @FXML
+    private AddTaskController addTaskController;
     private ArrayList<FilterController> filterControllers;
     private final TaskRepository repository;
     private final ConcreteTaskCardViewFactory factory;
@@ -44,19 +46,11 @@ public class TaskSackController implements Initializable {
         // add tasks, filters, and addTask button
         try {
             filterControllers = filterViewFactory.addFilters(filters, this);
-            addAddTaskButton();
+            addTaskController.setTaskSackController(this);
             addTasks();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-    }
-
-    private void addAddTaskButton() throws IOException {
-        FXMLLoader addTaskLoader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/addTask.fxml"));
-        AnchorPane root = addTaskLoader.load();
-        AddTaskController addTaskController = addTaskLoader.getController();
-        addTaskController.setTaskSackController(this);
-        menus.getChildren().add(root);
     }
 
     /**
