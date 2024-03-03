@@ -1,4 +1,4 @@
-package com.rakkiz.management.task.client.view.factory.Filter;
+package com.rakkiz.management.task.client.view.factory.task.filter;
 
 import com.rakkiz.management.task.client.controller.TaskSackController;
 import javafx.scene.Node;

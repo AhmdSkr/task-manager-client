@@ -1,4 +1,4 @@
-package com.rakkiz.management.task.client.view.factory.Filter;
+package com.rakkiz.management.task.client.view.factory.task.filter;
 
 import com.rakkiz.management.task.client.TaskManagerApplication;
 import com.rakkiz.management.task.client.controller.FilterController;

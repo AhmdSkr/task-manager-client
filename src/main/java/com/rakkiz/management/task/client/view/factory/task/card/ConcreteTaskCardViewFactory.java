@@ -1,4 +1,4 @@
-package com.rakkiz.management.task.client.view.factory.TaskCard;
+package com.rakkiz.management.task.client.view.factory.task.card;
 
 import com.rakkiz.management.task.client.TaskManagerApplication;
 import com.rakkiz.management.task.client.controller.TaskCardController;
