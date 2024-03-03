@@ -5,7 +5,7 @@ import javafx.scene.Node;
 
 import java.io.IOException;
 
-public interface FilterVeiwFactory {
+public interface FilterViewFactory {
 
     /**
      * Creates a new Filter view for the Task Sack.

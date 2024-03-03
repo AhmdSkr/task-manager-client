@@ -19,7 +19,7 @@ import java.util.Objects;
 /**
  * The ConcreteFilterViewFactory is responsible for loading Filter views into the application.
  */
-public class ConcreteFilterViewFactory implements FilterVeiwFactory {
+public class ConcreteFilterViewFactory implements FilterViewFactory {
     private static final String FXML_PATH = "fxml/filter.fxml";
     private final FXMLLoader filterLoader;
     private FilterController filterController;
