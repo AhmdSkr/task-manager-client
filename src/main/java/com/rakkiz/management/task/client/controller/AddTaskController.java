@@ -1,58 +1,39 @@
 package com.rakkiz.management.task.client.controller;
 
-import com.rakkiz.management.task.client.TaskManagerApplication;
-import com.rakkiz.management.task.client.data.DerbyTaskRepository;
 import com.rakkiz.management.task.client.data.model.Task;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import lombok.Setter;
 
-import java.io.IOException;
-import java.sql.SQLException;
+import java.util.function.Consumer;
 
+/**
+ * This class can control any JavaFx UI component that could be used to trigger a task creation.<br/>
+ * It does not handle the storage or display of the created task, instead it is responsible for task
+ * instantiation and custom initialization.<br/>
+ * Any other responsibilities can be handled through a created task {@link Consumer} that can be
+ * set through {@link #setOnCreation(Consumer)}
+ */
+@Setter
 public class AddTaskController {
+    private Consumer<Task> onCreation;
 
     @FXML
-    private AnchorPane anchorRoot;
-    private final DerbyTaskRepository taskRepository;
-    TaskSackController taskSackController;
-
-    public AddTaskController() throws SQLException {
-        taskRepository = DerbyTaskRepository.getInstance();
-    }
-
-    public void setTaskSackController(TaskSackController taskSackController) {
-        this.taskSackController = taskSackController;
+    public final void addTask() {
+        Task task = new Task();
+        initialize(task);
+        if (onCreation != null) onCreation.accept(task);
     }
 
     /**
-     * Creates a new task
+     * This method can be extended in any custom task creation button to modify
+     * the task data and structure.
      *
-     * @throws SQLException when creating the task in database
-     * @throws IOException  when loading the fxml or showing the taskDetails
+     * @param task to be edited
      */
-    @FXML
-    public void addTask() throws SQLException, IOException {
-
-        // create a new task in database
-        Task task = new Task();
-        taskRepository.create(task);
-
-        // load taskCard fxml
-        FXMLLoader loader = new FXMLLoader(TaskManagerApplication.class.getResource("fxml/task-card.fxml"));
-        AnchorPane taskAnchor = loader.load();
-        TaskCardController controller = loader.getController();
-        controller.setTaskModel(task);
-        controller.setTaskSackController(taskSackController);
-
-        // add taskCard to task Sack
-        Scene scene = anchorRoot.getScene();
-        GridPane gridPane = (GridPane) scene.lookup("#allTasks");
-        gridPane.add(taskAnchor, 0, 0);
-
-        // show the taskDetails of the card
-        controller.goToDetails();
+    public void initialize(Task task) {
+        task.setName("Untitled");
+        task.setDescription("Break down your task. reflect on you progress or experience");
+        task.setDuration(1);
+        task.setScheduleTime(null);
     }
 }

@@ -1,22 +1,20 @@
 package com.rakkiz.management.task.client.controller;
 
-import com.rakkiz.management.task.client.TaskManagerApplication;
 import com.rakkiz.management.task.client.data.DerbyTaskRepository;
 import com.rakkiz.management.task.client.data.TaskRepository;
 import com.rakkiz.management.task.client.data.model.Task;
-import com.rakkiz.management.task.client.view.factory.task.filter.ConcreteFilterViewFactory;
 import com.rakkiz.management.task.client.view.factory.task.card.ConcreteTaskCardViewFactory;
+import com.rakkiz.management.task.client.view.factory.task.filter.ConcreteFilterViewFactory;
 import com.rakkiz.management.task.client.view.strategy.date.DateTaskFilter;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import lombok.SneakyThrows;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -44,13 +42,28 @@ public class TaskSackController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // add tasks, filters, and addTask button
+        addTaskController.setOnCreation(this::onTaskAddition);
         try {
             filterControllers = filterViewFactory.addFilters(filters, this);
-            addTaskController.setTaskSackController(this);
+
             addTasks();
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @SneakyThrows
+    private void onTaskAddition(Task toAdd) {
+        repository.create(toAdd);
+        String path = "/com/rakkiz/management/task/client/fxml/task-card.fxml";
+        URL fxml = getClass().getResource(path);
+        FXMLLoader loader = new FXMLLoader(fxml);
+        Node taskCard = loader.load();
+        TaskCardController controller = loader.getController();
+        controller.setTaskModel(toAdd);
+        controller.setTaskSackController(this);
+        allTasks.add(taskCard, 0, 0);
+        controller.goToDetails();
     }
 
     /**
