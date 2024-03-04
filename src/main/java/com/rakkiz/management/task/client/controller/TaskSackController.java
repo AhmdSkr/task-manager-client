@@ -27,7 +27,7 @@ public class TaskSackController implements Initializable {
     @FXML
     private HBox filters;
     @FXML
-    private AddTaskController addTaskController;
+    private TaskCreatorController addTaskController;
     private ArrayList<FilterController> filterControllers;
     private final TaskRepository repository;
     private final ConcreteTaskCardViewFactory factory;

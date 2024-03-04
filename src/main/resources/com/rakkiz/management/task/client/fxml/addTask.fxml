@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <AnchorPane xmlns="http://javafx.com/javafx/17.0.2-ea"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="com.rakkiz.management.task.client.controller.AddTaskController">
+            fx:controller="com.rakkiz.management.task.client.controller.TaskCreatorController">
     <Button alignment="CENTER" mnemonicParsing="false" onAction="#addTask"
             style="-fx-background-color: transparent; -fx-text-fill: #E63946; -fx-font-size: 24px;" text="+ Add Task">
         <cursor>

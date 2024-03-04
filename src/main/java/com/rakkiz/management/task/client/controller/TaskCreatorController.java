@@ -14,7 +14,7 @@ import java.util.function.Consumer;
  * set through {@link #setOnCreation(Consumer)}
  */
 @Setter
-public class AddTaskController {
+public class TaskCreatorController {
     private Consumer<Task> onCreation;
 
     @FXML
